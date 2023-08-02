@@ -1,0 +1,11 @@
+/department/index
+/department/add
+/department/edit
+/department/delete
+/department/detail/{id}
+
+git flowing
+layout fragment
+layout decorate
+
+fullname -> first name, last name
