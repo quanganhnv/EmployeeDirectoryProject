@@ -12,15 +12,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
 @RestController
+@RequestMapping("/employee")
 public class EmployeeController {
     private final EmployeeService employeeService;
 
@@ -28,12 +26,11 @@ public class EmployeeController {
         this.employeeService = employeeService;
     }
 
-    @GetMapping("/page-list-employee")
-    public ModelAndView getListEmployeePage(@RequestParam(value = "textSearch", required = false, defaultValue = "") String textSearch, Pageable pageable, Authentication authentication){
-        authentication = SecurityContextHolder.getContext().getAuthentication();
+    @GetMapping("/index")
+    public ModelAndView getListEmployeePage(@RequestParam(value = "textSearch", required = false, defaultValue = "") String textSearch, Pageable pageable){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         AccountDetails accountDetails = (AccountDetails)authentication.getPrincipal();
-
-        ModelAndView mav = new ModelAndView("/page-list-employee");
+        ModelAndView mav = new ModelAndView("/employee/index");
         Page<EmployeeDTO> page = employeeService.findAll(textSearch, pageable);
         mav.addObject("listEmployee", page);
         mav.addObject("id", accountDetails.getID());
@@ -42,20 +39,29 @@ public class EmployeeController {
         return mav;
     }
 
-    @GetMapping("/page-list-employee/search")
+    @GetMapping("/index/search")
     public ModelAndView search(@RequestParam(value = "textSearch", required = true) String textSearch, Pageable pageable, Authentication authentication) {
-        ModelAndView mav = new ModelAndView("/page-list-employee");
+        ModelAndView mav = new ModelAndView("/employee/index");
         Page<EmployeeDTO> page = employeeService.findAll(textSearch, pageable);
         mav.addObject("listEmployee", page);
         // send to /employees/list
         return mav;
     }
 
-    @GetMapping("/admin/page-list-employee/details/{id}")
+    @GetMapping("/details/{id}")
     public ModelAndView showListEmployeeOfDepartment(@PathVariable int id, Pageable pageable){
-        ModelAndView mav = new ModelAndView("/page-list-employee");
+        ModelAndView mav = new ModelAndView("/employee/index");
         Page<EmployeeDTO> page = employeeService.findAllByDepartment(id, pageable);
         mav.addObject("listEmployee", page);
+        return mav;
+    }
+
+    @GetMapping("/profile/{id}")
+    public ModelAndView viewProfile(@PathVariable Integer id, Authentication authentication){
+        authentication = SecurityContextHolder.getContext().getAuthentication();
+        AccountDetails accountDetails = (AccountDetails)authentication.getPrincipal();
+
+        ModelAndView mav = new ModelAndView("/employee/profile");
         return mav;
     }
 }

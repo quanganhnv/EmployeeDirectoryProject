@@ -49,7 +49,7 @@ public class LoginConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .formLogin()
                 .loginPage("/sign-in")
-                .defaultSuccessUrl("/page-list-employee", true)
+                .defaultSuccessUrl("/employee/index", true)
                 .permitAll()
                 .and()
                 .logout() // Cho phép logout\

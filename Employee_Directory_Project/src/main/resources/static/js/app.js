@@ -293,7 +293,7 @@ Index Of Script
   jQuery(document).on("click", ".chat-head .chat-user-profile", function () {
     jQuery(this).parent().next().toggleClass("show");
   });
-  jQuery(document).on("click", ".user-profile .close-popup", function () {
+  jQuery(document).on("click", ".employee-profile .close-popup", function () {
     jQuery(this).parent().parent().removeClass("show");
   });
 
@@ -303,7 +303,7 @@ Index Of Script
   jQuery(document).on("click", ".chat-search .chat-profile", function () {
     jQuery(this).parent().next().toggleClass("show");
   });
-  jQuery(document).on("click", ".user-profile .close-popup", function () {
+  jQuery(document).on("click", ".employee-profile .close-popup", function () {
     jQuery(this).parent().parent().removeClass("show");
   });
 

@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <title>Employee Diretory Project</title>
+
+      <!-- Favicon -->
+      <link rel="shortcut icon" th:href="@{/images/favicon.ico}" />
+      <link rel="stylesheet" th:href="@{/css/backend-plugin.min.css}">
+      <link rel="stylesheet" th:href="@{/css/backend.css}">
+      <link rel="stylesheet" th:href="@{/vendor/@fortawesome/fontawesome-free/css/all.min.css}">
+      <link rel="stylesheet" th:href="@{/vendor/line-awesome/dist/line-awesome/css/line-awesome.min.css}">
+      <link rel="stylesheet" th:href="@{/vendor/remixicon/fonts/remixicon.css}">
+  </head>
+  <body class="  ">
+    <!-- loader Start -->
+    <div id="loading">
+          <div id="loading-center">
+          </div>
+    </div>
+    <!-- loader END -->
+    <!-- Wrapper Start -->
+    <div class="wrapper">
+
+      <div class="iq-sidebar  sidebar-default ">
+          <div class="iq-sidebar-logo d-flex align-items-center justify-content-between">
+              <a th:href="@{/index}" class="header-logo">
+                  <img th:src="@{/images/logo.png}" class="img-fluid rounded-normal light-logo" alt="logo"><h5 class="logo-title light-logo ml-3">Employee Directory Project</h5>
+              </a>
+              <div class="iq-menu-bt-sidebar ml-0">
+                  <i class="las la-bars wrapper-menu"></i>
+              </div>
+          </div>
+          <div class="data-scrollbar" data-scroll="1">
+              <div th:replace="fragments/sidebar :: sidebar"></div>
+              <div class="p-3"></div>
+          </div>
+          </div>
+        <div class="iq-top-navbar">
+          <div class="iq-navbar-custom">
+              <div th:replace="fragments/header :: header"></div>
+          </div>
+      </div>
+    <div class="modal fade" id="new-order" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="popup text-left">
+                        <h4 class="mb-3">New Order</h4>
+                        <div class="content create-workform bg-body">
+                            <div class="pb-3">
+                                <label class="mb-2">Email</label>
+                                <input type="text" class="form-control" placeholder="Enter Name or Email">
+                            </div>
+                            <div class="col-lg-12 mt-4">
+                                <div class="d-flex flex-wrap align-items-ceter justify-content-center">
+                                    <div class="btn btn-primary mr-4" data-dismiss="modal">Cancel</div>
+                                    <div class="btn btn-outline-primary" data-dismiss="modal">Create</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>      <div class="content-page">
+    <div class="container-fluid add-form-list">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between">
+                        <div class="header-title">
+                            <h4 class="card-title">Department Details</h4>
+                            <h3 th:text="${error}"></h3>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div th:object="${department}" >
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Department Name</label>
+                                        <input type="text" name = "name" class="form-control" th:value="*{name}" readonly="readonly"/>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Phone</label>
+                                        <input type="text" name = "phone" class="form-control" th:value="*{phone}" readonly="readonly" />
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Manager Name</label>
+                                        <input type="text" name = "manager_id" class="form-control" th:value="*{manager_name}" readonly="readonly" />
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Description</label>
+                                        <input type="text" name = "description" class="form-control" th:value="*{description}" readonly="readonly" />
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>List Employee Of Department</label>
+                                        <br>
+                                        <a class = "btnListEmployeeOfDepartment" th:href="@{/employee/details/{id}(id=*{id})}">Show List Employee</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Page end  -->
+    </div>
+</div>
+</div>
+<!-- Wrapper End-->
+<footer class="iq-footer">
+    <div th:replace="fragments/footer :: footer"></div>
+</footer>
+<!-- Backend Bundle JavaScript -->
+<script th:src="@{/js/backend-bundle.min.js}"></script>
+
+<!-- Table Treeview JavaScript -->
+<script th:src="@{/js/table-treeview.js}"></script>
+
+<!-- Chart Custom JavaScript -->
+<script th:src="@{/js/customizer.js}"></script>
+
+<!-- Chart Custom JavaScript -->
+<script async th:src="@{/js/chart-custom.js}"></script>
+
+<!-- app JavaScript -->
+<script th:src="@{/js/app.js}"></script>
+</body>
+</html>

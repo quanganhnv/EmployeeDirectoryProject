@@ -14,7 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.View;
 
 @RestController
-@RequestMapping("/admin")
+@RequestMapping("/admin/account")
 public class AccountController {
     private final AccountService accountService;
 
@@ -26,9 +26,9 @@ public class AccountController {
         this.accountRepository = accountRepository;
     }
 
-    @GetMapping("/page-list-account")
+    @GetMapping("/index")
     public ModelAndView getAllAccount(Pageable pageable){
-        ModelAndView mav = new ModelAndView("page-list-account");
+        ModelAndView mav = new ModelAndView("/account/index");
         Page<AccountDTO> listAccount = accountService.findAll(pageable);
         mav.addObject("listAccount", listAccount);
         return mav;
