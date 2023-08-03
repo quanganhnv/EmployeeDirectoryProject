@@ -1,11 +1,13 @@
 package com.Employee_Directory_Project.entities;
 
 import com.sun.istack.NotNull;
+import org.hibernate.type.descriptor.sql.TinyIntTypeDescriptor;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
 import java.time.ZonedDateTime;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -21,8 +23,12 @@ public class Employee {
     @Column(name = "fullname")
     private String fullname;
 
+
     @Column(name = "birthday")
     private String birthday;
+
+    @Column(name = "identity_number")
+    private String identity_number;
 
     @Column(name = "phone")
     private String phone;
@@ -150,5 +156,13 @@ public class Employee {
 
     public void setLastModifiedDate(ZonedDateTime lastModifiedDate) {
         this.lastModifiedDate = lastModifiedDate;
+    }
+
+    public String getIdentity_number() {
+        return identity_number;
+    }
+
+    public void setIdentity_number(String identity_number) {
+        this.identity_number = identity_number;
     }
 }

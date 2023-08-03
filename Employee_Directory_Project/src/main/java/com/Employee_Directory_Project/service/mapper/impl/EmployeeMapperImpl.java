@@ -27,6 +27,7 @@ public class EmployeeMapperImpl implements EmployeeMapper {
         employee.setBirthday(dto.getBirthday());
         employee.setDepartment_id(dto.getDepartment_id());
         employee.setGender(dto.getGender());
+        employee.setIdentity_number((dto.getIdentity_number()));
 
         return employee;
     }
@@ -44,6 +45,7 @@ public class EmployeeMapperImpl implements EmployeeMapper {
         employeeDTO.setBirthday(entity.getBirthday());
         employeeDTO.setDepartment_id(entity.getDepartment_id());
         employeeDTO.setGender(entity.getGender());
+        employeeDTO.setIdentity_number(entity.getIdentity_number());
 
         Department department = entity.getDepartment();
         if (department != null) {
