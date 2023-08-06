@@ -18,7 +18,7 @@
         </a>
     </div>
     <div class="iq-search-bar device-search">
-        <form th:action="@{employee/index/search/}" method="get" class="searchbox">
+        <form th:action="@{'/' + ${objectSearchPage} + '/index/search/'}" method="get" class="searchbox">
             <a class="search-link" href="#"><i class="ri-search-line"></i></a>
             <input type="search" class="text search-input" name="textSearch" th:value="${textSearch}" placeholder="Search here...">
         </form>

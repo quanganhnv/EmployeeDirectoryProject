@@ -17,7 +17,7 @@ public class DepartmentDTO {
 
     private String phone;
 
-    private int manager_id;
+    private String manager_id;
 
     private String manager_name;
 
@@ -51,11 +51,11 @@ public class DepartmentDTO {
         this.phone = phone;
     }
 
-    public int getManager_id() {
+    public String getManager_id() {
         return manager_id;
     }
 
-    public void setManager_id(int manager_id) {
+    public void setManager_id(String manager_id) {
         this.manager_id = manager_id;
     }
 
@@ -90,4 +90,6 @@ public class DepartmentDTO {
     public void setLastModifiedDate(ZonedDateTime lastModifiedDate) {
         this.lastModifiedDate = lastModifiedDate;
     }
+
+
 }

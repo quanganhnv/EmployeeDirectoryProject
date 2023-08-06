@@ -4,14 +4,12 @@ import com.Employee_Directory_Project.entities.Employee;
 import com.Employee_Directory_Project.repository.EmployeeRepository;
 import com.Employee_Directory_Project.service.EmployeeService;
 import com.Employee_Directory_Project.service.dto.EmployeeDTO;
-import com.Employee_Directory_Project.service.dto.ProjectDTO;
 import com.Employee_Directory_Project.service.mapper.EmployeeMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -33,18 +31,23 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public Page<EmployeeDTO> findAll(String textSearch, Pageable pageable) {
-        return employeeRepository.findAllByFullnameContainingIgnoreCase(textSearch, pageable).map(employeeMapper::toDto);
+    public Page<EmployeeDTO> findAllByFirstNameOrLastName(String firstName,String lastName , Pageable pageable) {
+        return employeeRepository.findAllByFirstNameOrLastNameContainingIgnoreCase(firstName, lastName, pageable).map(employeeMapper::toDto);
     }
 
     @Override
-    public List<EmployeeDTO> findAll(){
-        return employeeMapper.toDto(employeeRepository.findAll());
+    public Page<EmployeeDTO> findAll(Pageable pageable) {
+        return employeeRepository.findAll(pageable).map(employeeMapper::toDto);
     }
 
     @Override
     public Page<EmployeeDTO> findAllByDepartment(Integer department_id, Pageable pageable) {
         return employeeRepository.findAllByDepartment_id(department_id, pageable).map(employeeMapper::toDto);
+    }
+
+    @Override
+    public Optional<EmployeeDTO> findTopByOrderByIdDesc() {
+        return employeeRepository.findTopByOrderByIdDesc().map(employeeMapper::toDto);
     }
 
     @Override

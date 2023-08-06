@@ -22,12 +22,13 @@ public class EmployeeMapperImpl implements EmployeeMapper {
 
         Employee employee = new Employee();
         employee.setId(dto.getId());
-        employee.setFullname(dto.getFullname());
+        employee.setFirstName(dto.getFirstName());
+        employee.setLastName(dto.getLastName());
         employee.setPhone(dto.getPhone());
+        employee.setAddress(dto.getAddress());
         employee.setBirthday(dto.getBirthday());
         employee.setDepartment_id(dto.getDepartment_id());
         employee.setGender(dto.getGender());
-        employee.setIdentity_number((dto.getIdentity_number()));
 
         return employee;
     }
@@ -40,12 +41,15 @@ public class EmployeeMapperImpl implements EmployeeMapper {
 
         EmployeeDTO employeeDTO = new EmployeeDTO();
         employeeDTO.setId(entity.getId());
-        employeeDTO.setFullname(entity.getFullname());
+        employeeDTO.setFirstName(entity.getFirstName());
+        employeeDTO.setLastName(entity.getLastName());
+        employeeDTO.setFullName(entity.getFullName());
         employeeDTO.setPhone(entity.getPhone());
+        employeeDTO.setAddress(entity.getAddress());
         employeeDTO.setBirthday(entity.getBirthday());
         employeeDTO.setDepartment_id(entity.getDepartment_id());
         employeeDTO.setGender(entity.getGender());
-        employeeDTO.setIdentity_number(entity.getIdentity_number());
+        employeeDTO.setImage_path(entity.getImage_path());
 
         Department department = entity.getDepartment();
         if (department != null) {
@@ -62,7 +66,7 @@ public class EmployeeMapperImpl implements EmployeeMapper {
             employeeDTO.setEmail(email);
         }
 
-        employeeDTO.setImage_path(entity.getImage_path());
+
         return employeeDTO;
     }
 

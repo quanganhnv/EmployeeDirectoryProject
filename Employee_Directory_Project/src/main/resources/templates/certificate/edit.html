@@ -71,40 +71,59 @@
                 <div class="card">
                     <div class="card-header d-flex justify-content-between">
                         <div class="header-title">
-                            <h4 class="card-title">Edit Deparment</h4>
+                            <h4 class="card-title">Edit Certificate</h4>
                             <h3 th:text="${error}"></h3>
                         </div>
                     </div>
                     <div class="card-body">
-                        <form th:action="@{'/admin/department/edit/' + ${department.id}}" method="post" th:object="${department}" >
+                        <form th:action="@{'/certificate/edit/' + ${certificate.id}}" method="post" th:object="${certificate}" >
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label>Department Name *</label>
-                                        <input type="text" name = "name" class="form-control" th:field="*{name}" placeholder="Enter Department Name" required />
+                                        <label>Employee Name</label>
+                                        <input type="text" name = "employee_name" class="form-control" th:value="${certificate.employee_name}" readonly = "readonly" />
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Employee Id</label>
+                                        <input type="text" name = "employee_id" class="form-control" th:value="${certificate.employee_id}" readonly = "readonly" />
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Name *</label>
+                                        <input type="text" name = "name" class="form-control" th:value="*{name}" placeholder="Enter Certificate Name" required />
                                         <div class="help-block with-errors"></div>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label>Phone *</label>
-                                        <input type="text" name = "phone" class="form-control" th:field="*{phone}" placeholder="Enter Phone Num" required />
+                                        <input type="text" name = "effective_day" class="form-control" th:value="*{effective_day}" placeholder="Enter Effective Day" required />
                                         <div class="help-block with-errors"></div>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label>Department Manager *</label>
-                                        <select th:field="*{manager_id}" class="form-control" required style="cursor: pointer;">
-                                            <option th:each="employee : ${listEmployee}" th:value="${employee.id}" th:text = "${employee.fullName}" />
-                                        </select>
+                                        <label>Manager Id *</label>
+                                        <input type="text" name = "expiry_date" class="form-control" th:value="*{expiry_date}" placeholder="Enter Expiry Date" required />
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Authorization *</label>
+                                        <input type="text" name = "authorization" class="form-control" th:value="*{authorization}" placeholder="Enter Authorization" />
                                         <div class="help-block with-errors"></div>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label>Description</label>
-                                        <input type="text" name = "description" class="form-control" th:field="*{description}" placeholder="Enter Description" />
+                                        <input type="text" name = "description" class="form-control" th:value="*{description}" placeholder="Enter Description" />
                                         <div class="help-block with-errors"></div>
                                     </div>
                                 </div>

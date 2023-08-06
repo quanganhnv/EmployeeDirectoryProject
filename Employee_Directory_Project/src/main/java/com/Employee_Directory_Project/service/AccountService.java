@@ -5,8 +5,14 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.Optional;
+
 public interface AccountService {
+    AccountDTO save(AccountDTO accountDTO);
+
     public UserDetails loadUserByUsername(String username);
 
     Page<AccountDTO> findAll(Pageable pageable);
+
+    Optional<AccountDTO> findById(Integer id);
 }

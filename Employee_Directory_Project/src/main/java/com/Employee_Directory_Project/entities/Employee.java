@@ -1,13 +1,12 @@
 package com.Employee_Directory_Project.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sun.istack.NotNull;
-import org.hibernate.type.descriptor.sql.TinyIntTypeDescriptor;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
 import java.time.ZonedDateTime;
-import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -20,21 +19,23 @@ public class Employee {
     @Column(name = "id")
     private int id;
 
-    @Column(name = "fullname")
-    private String fullname;
+    @Column(name = "firstName")
+    private String firstName;
 
+    @Column(name = "lastName")
+    private String lastName;
 
     @Column(name = "birthday")
     private String birthday;
 
-    @Column(name = "identity_number")
-    private String identity_number;
-
     @Column(name = "phone")
     private String phone;
 
+    @Column(name = "address")
+    private String address;
+
     @Column(name = "department_id")
-    private int department_id;
+    private String department_id;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "department_id", referencedColumnName = "id", insertable = false, updatable = false)
@@ -47,11 +48,24 @@ public class Employee {
     @OneToOne(mappedBy = "employee")
     private Department department_name;
 
+    @JsonIgnore
+    @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL)
+    private Set<Certificate> certificates = new HashSet<>();
+
     @Column(name = "image_path")
     private String image_path;
 
     @Column(name = "sex")
     private int gender;
+
+    @Column(name = "identity_number")
+    private String identity_number;
+
+    @Column(name = "issued_on")
+    private String issued_on;
+
+    @Column(name = "issued_by")
+    private String issued_by;
 
     @CreatedDate
     @NotNull
@@ -70,12 +84,26 @@ public class Employee {
         this.id = id;
     }
 
-    public String getFullname() {
-        return fullname;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setFullname(String fullname) {
-        this.fullname = fullname;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getFullName(){
+        String firstName = this.firstName;
+        String lastName = this.lastName;
+        return firstName + " " + lastName;
     }
 
     public String getBirthday() {
@@ -94,11 +122,11 @@ public class Employee {
         this.phone = phone;
     }
 
-    public int getDepartment_id() {
+    public String getDepartment_id() {
         return department_id;
     }
 
-    public void setDepartment_id(int department_id) {
+    public void setDepartment_id(String department_id) {
         this.department_id = department_id;
     }
 
@@ -158,11 +186,43 @@ public class Employee {
         this.lastModifiedDate = lastModifiedDate;
     }
 
+    public Set<Certificate> getCertificates() {
+        return certificates;
+    }
+
+    public void setCertificates(Set<Certificate> certificates) {
+        this.certificates = certificates;
+    }
+
     public String getIdentity_number() {
         return identity_number;
     }
 
     public void setIdentity_number(String identity_number) {
         this.identity_number = identity_number;
+    }
+
+    public String getIssued_on() {
+        return issued_on;
+    }
+
+    public void setIssued_on(String issued_on) {
+        this.issued_on = issued_on;
+    }
+
+    public String getIssued_by() {
+        return issued_by;
+    }
+
+    public void setIssued_by(String issued_by) {
+        this.issued_by = issued_by;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 }

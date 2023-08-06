@@ -13,6 +13,7 @@ import java.time.ZonedDateTime;
 public class Account {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Integer id;
 
     @Column(name = "email")
@@ -23,6 +24,9 @@ public class Account {
 
     @Column(name = "password")
     private String password;
+
+    @Column(name = "employee_id")
+    private int employee_id;
 
     @Column(name = "role_id")
     private String role_id;
@@ -45,13 +49,9 @@ public class Account {
     @Column(name = "updated_at")
     private ZonedDateTime lastModifiedDate = ZonedDateTime.now();
 
-    public Account() {}
-
-    public Account(String username, String password, String role_id) {
-        this.username = username;
-        this.password = password;
-        this.role_id = role_id;
-    }
+    @LastModifiedDate
+    @Column(name = "changed_active_at")
+    private ZonedDateTime changedActiveAt = ZonedDateTime.now();
 
     public Integer getId() {
         return id;
@@ -59,6 +59,14 @@ public class Account {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public int getEmployee_id() {
+        return employee_id;
+    }
+
+    public void setEmployee_id(int employee_id) {
+        this.employee_id = employee_id;
     }
 
     public String getEmail() {
@@ -131,6 +139,14 @@ public class Account {
 
     public void setStatus(int status) {
         this.status = status;
+    }
+
+    public ZonedDateTime getChangedActiveAt() {
+        return changedActiveAt;
+    }
+
+    public void setChangedActiveAt(ZonedDateTime changedActiveAt) {
+        this.changedActiveAt = changedActiveAt;
     }
 
     // getters and setters are not shown for brevity
