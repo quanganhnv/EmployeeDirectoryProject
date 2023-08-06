@@ -16,6 +16,8 @@ public class EmployeeDTO implements Serializable {
 
     private String birthday;
 
+    private String identity_number;
+
     private String phone;
 
     private int department_id;
@@ -108,5 +110,13 @@ public class EmployeeDTO implements Serializable {
 
     public void setGender(int gender) {
         this.gender = gender;
+    }
+
+    public String getIdentity_number() {
+        return identity_number;
+    }
+
+    public void setIdentity_number(String identity_number) {
+        this.identity_number = identity_number;
     }
 }
