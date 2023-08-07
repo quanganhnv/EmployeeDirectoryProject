@@ -95,7 +95,7 @@
                         <tr>
                             <td th:text = "${employeeStat.index+1}">1</td>
                             <td><img th:src="${employee.image_path}" class="img-fluid rounded-normal light-logo" alt="logo"></td>
-                            <td th:text = "${employee.fullname}">Nguyen Vu Quang Anh</td>
+                            <td th:text = "${employee.fullName}">Nguyen Vu Quang Anh</td>
                             <td th:text="${employee.birthday}">06/05/2001</td>
                             <td>
                                 <span th:if="${employee.gender == 0}"> Male</span>

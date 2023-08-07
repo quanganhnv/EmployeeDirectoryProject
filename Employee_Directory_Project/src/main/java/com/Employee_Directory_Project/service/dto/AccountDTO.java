@@ -2,6 +2,8 @@ package com.Employee_Directory_Project.service.dto;
 
 import com.Employee_Directory_Project.entities.Employee;
 
+import java.time.ZonedDateTime;
+
 public class AccountDTO {
     private Integer id;
 
@@ -12,6 +14,8 @@ public class AccountDTO {
     private String password;
 
     private String role_id;
+
+    private int employee_id;
 
     private Employee employee;
 
@@ -61,6 +65,18 @@ public class AccountDTO {
         this.role_id = role_id;
     }
 
+    private ZonedDateTime createdDate = ZonedDateTime.now();
+
+    private ZonedDateTime lastModifiedDate = ZonedDateTime.now();
+
+    public int getEmployee_id() {
+        return employee_id;
+    }
+
+    public void setEmployee_id(int employee_id) {
+        this.employee_id = employee_id;
+    }
+
     public Employee getEmployee() {
         return employee;
     }
@@ -91,5 +107,21 @@ public class AccountDTO {
 
     public void setStatus(Integer status) {
         this.status = status;
+    }
+
+    public ZonedDateTime getCreatedDate() {
+        return createdDate;
+    }
+
+    public void setCreatedDate(ZonedDateTime createdDate) {
+        this.createdDate = createdDate;
+    }
+
+    public ZonedDateTime getLastModifiedDate() {
+        return lastModifiedDate;
+    }
+
+    public void setLastModifiedDate(ZonedDateTime lastModifiedDate) {
+        this.lastModifiedDate = lastModifiedDate;
     }
 }

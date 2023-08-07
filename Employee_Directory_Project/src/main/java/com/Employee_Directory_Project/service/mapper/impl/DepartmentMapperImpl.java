@@ -42,7 +42,7 @@ public class DepartmentMapperImpl implements DepartmentMapper {
 
         Employee employee = entity.getEmployee();
         if(employee != null){
-            departmentDTO.setManager_name(employee.getFullname());
+            departmentDTO.setManager_name(employee.getFullName());
         }
 
         return departmentDTO;

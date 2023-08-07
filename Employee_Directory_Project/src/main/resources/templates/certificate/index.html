@@ -70,9 +70,10 @@
             <div class="col-lg-12">
                 <div class="d-flex flex-wrap align-items-center justify-content-between mb-4">
                     <div>
-                        <h4 class="mb-3">Certificate List</h4>
+                        <h4 class="mb-3">Certificate List Of <h4 th:text="${employee_name}"></h4></h4>
+                        <h3 th:text="${messages}"></h3>
                     </div>
-                    <a th:href="@{/page-add-certificate}" class="btn btn-primary add-list"><i class="las la-plus mr-3"></i>Add Certificate</a>
+                    <a th:href="@{/certificate/add}" class="btn btn-primary add-list"><i class="las la-plus mr-3"></i>Add Certificate</a>
                 </div>
             </div>
             <div class="col-lg-12">
@@ -88,8 +89,8 @@
                             <th>Action</th>
                         </tr>
                         </thead>
-                        <tbody class="ligth-body" th:each="employee: ${listEmployee}">
-                        <tr th:each="certificate: ${listCSertificate}">
+                        <tbody class="ligth-body">
+                        <tr th:each="certificate: ${listCertificate}">
                             <td th:text="${certificateStat.index+1}">Id</td>
                             <td th:text="${certificate.name}">D2</td>
                             <td th:text="${certificate.effective_day}">2023/08/21</td>

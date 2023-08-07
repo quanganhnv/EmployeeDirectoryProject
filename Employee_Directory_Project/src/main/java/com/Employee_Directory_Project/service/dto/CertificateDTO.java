@@ -1,48 +1,30 @@
-package com.Employee_Directory_Project.entities;
+package com.Employee_Directory_Project.service.dto;
 
-import com.sun.istack.NotNull;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
+import com.Employee_Directory_Project.entities.Employee;
 
-import javax.persistence.*;
 import java.time.ZonedDateTime;
 
-@Entity
-@Table(name = "certificate")
-public class Certificate {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class CertificateDTO {
     private Integer id;
 
-    @Column(name = "name")
     private String name;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "employee_id", referencedColumnName = "id", insertable = false, updatable = false)
     private Employee employee;
 
-    @Column(name = "employee_id")
     private int employee_id;
 
-    @Column(name = "effective_day")
+    private String employee_name;
+
     private String effective_day;
 
-    @Column(name = "expiry_date")
     private String expiry_date;
 
-    @Column(name = "authorization")
     private String authorization;
 
-    @Column(name = "description")
     private String description;
 
-    @CreatedDate
-    @NotNull
-    @Column(name = "created_at", nullable = false, updatable = false)
     private ZonedDateTime createdDate = ZonedDateTime.now();
 
-    @LastModifiedDate
-    @Column(name = "updated_at")
     private ZonedDateTime lastModifiedDate = ZonedDateTime.now();
 
     public Integer getId() {
@@ -107,6 +89,14 @@ public class Certificate {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getEmployee_name() {
+        return employee_name;
+    }
+
+    public void setEmployee_name(String employee_name) {
+        this.employee_name = employee_name;
     }
 
     public ZonedDateTime getCreatedDate() {

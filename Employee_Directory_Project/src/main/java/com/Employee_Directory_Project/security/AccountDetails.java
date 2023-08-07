@@ -37,6 +37,10 @@ public class AccountDetails implements UserDetails {
 
     public int getID(){return account.getId();}
 
+    public int getEmployeeID(){
+        return account.getEmployee_id();
+    }
+
     public String getEmail(){return account.getEmail();}
 
     @Override

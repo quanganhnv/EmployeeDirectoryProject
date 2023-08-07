@@ -31,12 +31,12 @@
             </a>
             <ul id="product" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
                 <li class="">
-                    <a th:href="@{/pm/project/list}" >
+                    <a href="../backend/page-list-product.html">
                         <i class="las la-minus"></i><span>List Project</span>
                     </a>
                 </li>
                 <li class="">
-                    <a th:href="@{/pm/project/add}">
+                    <a href="../backend/page-add-product.html">
                         <i class="las la-minus"></i><span>Add Project</span>
                     </a>
                 </li>
@@ -76,12 +76,7 @@
             <ul id="sale" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
                 <li class="">
                     <a th:href="@{/admin/account/index}">
-                        <i class="las la-minus"></i><span>List Account</span>
-                    </a>
-                </li>
-                <li class="">
-                    <a th:href="@{/admin/page-add-account}">
-                        <i class="las la-minus"></i><span>Add Account</span>
+                        <i class="las la-minus"></i><span>Account List</span>
                     </a>
                 </li>
                 <li class="">
@@ -145,18 +140,8 @@
                     </a>
                 </li>
                 <li class="">
-                    <a href="../backend/page-add-users.html">
-                        <i class="las la-minus"></i><span>Add Users</span>
-                    </a>
-                </li>
-                <li class="">
-                    <a href="../backend/page-list-suppliers.html">
-                        <i class="las la-minus"></i><span>Suppliers</span>
-                    </a>
-                </li>
-                <li class="">
-                    <a href="../backend/page-add-supplier.html">
-                        <i class="las la-minus"></i><span>Add Suppliers</span>
+                    <a th:href="@{/admin/employee/add}">
+                        <i class="las la-minus"></i><span>Add Employee</span>
                     </a>
                 </li>
             </ul>
@@ -178,7 +163,7 @@
                     </a>
                 </li>
                 <li class="">
-                    <a th:href="@{/page-add-certificate}">
+                    <a th:href="@{/certificate/add}">
                         <i class="las la-minus"></i><span>Add Certificate</span>
                     </a>
                 </li>

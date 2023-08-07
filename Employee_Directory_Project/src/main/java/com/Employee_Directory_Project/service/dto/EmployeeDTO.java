@@ -7,20 +7,25 @@ import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import java.io.Serializable;
+import java.time.ZonedDateTime;
 import java.util.Set;
 
 public class EmployeeDTO implements Serializable {
     private int id;
 
-    private String fullname;
+    private String firstName;
+
+    private String lastName;
+
+    private String fullName;
 
     private String birthday;
 
-    private String identity_number;
-
     private String phone;
 
-    private int department_id;
+    private String address;
+
+    private String department_id;
 
     private String department_name;
 
@@ -32,6 +37,20 @@ public class EmployeeDTO implements Serializable {
 
     private int gender;
 
+    private String username;
+
+    private String password;
+
+    private String identity_number;
+
+    private String issued_on;
+
+    private String issued_by;
+
+    private ZonedDateTime createdDate = ZonedDateTime.now();
+
+    private ZonedDateTime lastModifiedDate = ZonedDateTime.now();
+
     public int getId() {
         return id;
     }
@@ -40,12 +59,30 @@ public class EmployeeDTO implements Serializable {
         this.id = id;
     }
 
-    public String getFullname() {
-        return fullname;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setFullname(String fullname) {
-        this.fullname = fullname;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getFullName() {
+        String firstName = this.firstName;
+        String lastName = this.lastName;
+        return firstName + " " + lastName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
     public String getBirthday() {
@@ -64,11 +101,11 @@ public class EmployeeDTO implements Serializable {
         this.phone = phone;
     }
 
-    public int getDepartment_id() {
+    public String getDepartment_id() {
         return department_id;
     }
 
-    public void setDepartment_id(int department_id) {
+    public void setDepartment_id(String department_id) {
         this.department_id = department_id;
     }
 
@@ -112,11 +149,67 @@ public class EmployeeDTO implements Serializable {
         this.gender = gender;
     }
 
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     public String getIdentity_number() {
         return identity_number;
     }
 
     public void setIdentity_number(String identity_number) {
         this.identity_number = identity_number;
+    }
+
+    public String getIssued_on() {
+        return issued_on;
+    }
+
+    public void setIssued_on(String issued_on) {
+        this.issued_on = issued_on;
+    }
+
+    public String getIssued_by() {
+        return issued_by;
+    }
+
+    public void setIssued_by(String issued_by) {
+        this.issued_by = issued_by;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public ZonedDateTime getCreatedDate() {
+        return createdDate;
+    }
+
+    public void setCreatedDate(ZonedDateTime createdDate) {
+        this.createdDate = createdDate;
+    }
+
+    public ZonedDateTime getLastModifiedDate() {
+        return lastModifiedDate;
+    }
+
+    public void setLastModifiedDate(ZonedDateTime lastModifiedDate) {
+        this.lastModifiedDate = lastModifiedDate;
     }
 }

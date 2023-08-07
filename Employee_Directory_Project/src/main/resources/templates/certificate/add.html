@@ -33,20 +33,7 @@
             </div>
         </div>
         <div class="data-scrollbar" data-scroll="1">
-            <div th:replace="fragments/sidebar :: sidebar">
-                <ul id="category" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
-                    <li class="">
-                        <a th:href="@{/admin/department/index}">
-                            <i class="las la-minus"></i><span>Department List</span>
-                        </a>
-                    </li>
-                    <li class="active">
-                        <a th:href="@{/admin/department/add}">
-                            <i class="las la-minus"></i><span>Add Department</span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
+            <div th:replace="fragments/sidebar :: sidebar"></div>
             <div class="p-3"></div>
         </div>
     </div>
@@ -55,59 +42,73 @@
             <div th:replace="fragments/header :: header"></div>
         </div>
     </div>
-      <div class="modal fade" id="new-order" tabindex="-1" role="dialog" aria-hidden="true">
-          <div class="modal-dialog modal-dialog-centered" role="document">
-              <div class="modal-content">
-                  <div class="modal-body">
-                      <div class="popup text-left">
-                          <h4 class="mb-3">New Order</h4>
-                          <div class="content create-workform bg-body">
-                              <div class="pb-3">
-                                  <label class="mb-2">Email</label>
-                                  <input type="text" class="form-control" placeholder="Enter Name or Email">
-                              </div>
-                              <div class="col-lg-12 mt-4">
-                                  <div class="d-flex flex-wrap align-items-ceter justify-content-center">
-                                      <div class="btn btn-primary mr-4" data-dismiss="modal">Cancel</div>
-                                      <div class="btn btn-outline-primary" data-dismiss="modal">Create</div>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </div>      <div class="content-page">
+    <div class="modal fade" id="new-order" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="popup text-left">
+                        <h4 class="mb-3">New Order</h4>
+                        <div class="content create-workform bg-body">
+                            <div class="pb-3">
+                                <label class="mb-2">Email</label>
+                                <input type="text" class="form-control" placeholder="Enter Name or Email">
+                            </div>
+                            <div class="col-lg-12 mt-4">
+                                <div class="d-flex flex-wrap align-items-ceter justify-content-center">
+                                    <div class="btn btn-primary mr-4" data-dismiss="modal">Cancel</div>
+                                    <div class="btn btn-outline-primary" data-dismiss="modal">Create</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>      <div class="content-page">
      <div class="container-fluid add-form-list">
         <div class="row">
             <div class="col-sm-12">
                 <div class="card">
                     <div class="card-header d-flex justify-content-between">
                         <div class="header-title">
-                            <h4 class="card-title">Add Deparment</h4>
+                            <h4 class="card-title">Add Certificate</h4>
                         </div>
                     </div>
                     <div class="card-body">
-                        <form th:action="@{/admin/department/add}" method="post" th:object="${department}" >
+                        <form th:action="@{/certificate/add}" method="post" th:object="${certificate}" >
                             <div class="row">
                                 <div class="col-md-12">                      
                                     <div class="form-group">
-                                        <label>Department Name *</label>
-                                        <input type="text" name = "name" class="form-control" th:field="*{name}" placeholder="Enter Department Name" required />
+                                        <label>Name *</label>
+                                        <input type="text" name = "name" class="form-control" th:field="*{name}" placeholder="Enter Certificate Name" required />
                                         <div class="help-block with-errors"></div>
                                     </div>
-                                </div>                                 
+                                </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label>Phone *</label>
-                                        <input type="text" name = "phone" class="form-control" th:field="*{phone}" placeholder="Enter Phone Num" required />
+                                        <label>Effective Day *</label>
+                                        <input type="text" name = "effective_day" class="form-control" th:field="*{effective_day}" placeholder="Enter Effective Day" required />
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>  
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Expiry Date *</label>
+                                        <input type="text" name = "expiry_date" class="form-control" th:field="*{expiry_date}"  placeholder="Enter Expiry Date" required />
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Authorization *</label>
+                                        <input type="text" name = "authorization" class="form-control" th:field="*{authorization}"  placeholder="Enter Authorization" required />
                                         <div class="help-block with-errors"></div>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label>Description</label>
-                                        <input type="text" name = "description" class="form-control" th:field="*{description}" placeholder="Enter Description" />
+                                        <input type="text" name = "description" class="form-control" th:field="*{description}"  placeholder="Enter Description" />
                                         <div class="help-block with-errors"></div>
                                     </div>
                                 </div>

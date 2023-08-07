@@ -19,6 +19,7 @@ public class AccountMapperImpl implements AccountMapper {
 
         Account account = new Account();
         account.setId(dto.getId());
+        account.setEmployee_id(dto.getEmployee_id());
         account.setAvatar_path(dto.getAvatar_path());
         account.setEmail(dto.getEmail());
         account.setUsername(dto.getUsername());
@@ -37,6 +38,7 @@ public class AccountMapperImpl implements AccountMapper {
 
         AccountDTO accountDTO = new AccountDTO();
         accountDTO.setId(entity.getId());
+        accountDTO.setEmployee_id(entity.getEmployee_id());
         accountDTO.setAvatar_path(entity.getAvatar_path());
         accountDTO.setEmail(entity.getEmail());
         accountDTO.setUsername(entity.getUsername());
@@ -46,7 +48,7 @@ public class AccountMapperImpl implements AccountMapper {
 
         Employee employee = entity.getEmployee();
         if(employee != null){
-            accountDTO.setEmployee_name(employee.getFullname());
+            accountDTO.setEmployee_name(employee.getFullName());
         }
 
         return accountDTO;

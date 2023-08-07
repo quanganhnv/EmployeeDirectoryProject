@@ -27,7 +27,7 @@ public class Department {
     private String phone;
 
     @Column(name = "manager_id")
-    private int manager_id;
+    private String manager_id;
 
     @JsonIgnore
     @OneToMany(mappedBy = "department", cascade = CascadeType.ALL) // Quan hệ 1-n với đối tượng ở dưới (Employee) (1 bo phan co nhieu nhan vien)
@@ -89,11 +89,11 @@ public class Department {
         this.employee = employee;
     }
 
-    public int getManager_id() {
+    public String getManager_id() {
         return manager_id;
     }
 
-    public void setManager_id(int manager_id) {
+    public void setManager_id(String manager_id) {
         this.manager_id = manager_id;
     }
 

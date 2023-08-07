@@ -12,7 +12,9 @@ import java.util.Optional;
 public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
 //    Optional<Employee> findOneByEmailIgnoreCase(String email);
 
-    Page<Employee> findAllByFullnameContainingIgnoreCase(String textSearchFullName, Pageable pageable);
+    Page<Employee> findAllByFirstNameOrLastNameContainingIgnoreCase(String firstName, String lastName, Pageable pageable);
 
     Page<Employee> findAllByDepartment_id(Integer department_id, Pageable pageable);
+
+    Optional<Employee> findTopByOrderByIdDesc();
 }
