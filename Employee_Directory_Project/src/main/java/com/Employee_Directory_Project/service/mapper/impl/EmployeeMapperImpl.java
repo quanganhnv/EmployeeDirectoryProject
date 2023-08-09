@@ -3,8 +3,12 @@ package com.Employee_Directory_Project.service.mapper.impl;
 import com.Employee_Directory_Project.entities.Account;
 import com.Employee_Directory_Project.entities.Department;
 import com.Employee_Directory_Project.entities.Employee;
+import com.Employee_Directory_Project.entities.Project_Mem;
+import com.Employee_Directory_Project.repository.EmployeeRepository;
+import com.Employee_Directory_Project.repository.Project_MemRepository;
 import com.Employee_Directory_Project.service.dto.EmployeeDTO;
 import com.Employee_Directory_Project.service.mapper.EmployeeMapper;
+import com.Employee_Directory_Project.service.mapper.Project_MemMapper;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -14,6 +18,16 @@ import java.util.stream.Collectors;
 
 @Component
 public class EmployeeMapperImpl implements EmployeeMapper {
+
+    Project_MemMapper project_MemMapper;
+
+    Project_MemRepository project_MemRepository;
+
+    public EmployeeMapperImpl(Project_MemMapper project_MemMapper, Project_MemRepository project_MemRepository) {
+        this.project_MemMapper = project_MemMapper;
+        this.project_MemRepository = project_MemRepository;
+    }
+
     @Override
     public Employee toEntity(EmployeeDTO dto) {
         if (dto == null) {
@@ -64,6 +78,14 @@ public class EmployeeMapperImpl implements EmployeeMapper {
         String email = entity.getAccount().getEmail();
         if (email != null) {
             employeeDTO.setEmail(email);
+        }
+
+        if(entity.getProject_Mems() == null){
+            List<Project_Mem> project_Mems = project_MemRepository.findAll();
+            employeeDTO.setProject_MemsDTO(project_MemMapper.toDto(project_Mems));
+        }
+        else{
+            employeeDTO.setProject_MemsDTO(project_MemMapper.toDto(new ArrayList<>(entity.getProject_Mems())));
         }
 
 

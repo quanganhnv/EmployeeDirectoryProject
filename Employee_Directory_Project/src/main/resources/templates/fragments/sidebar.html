@@ -31,13 +31,36 @@
             </a>
             <ul id="product" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
                 <li class="">
-                    <a href="../backend/page-list-product.html">
+                    <a th:href="@{/pm/project/index}">
                         <i class="las la-minus"></i><span>List Project</span>
                     </a>
                 </li>
                 <li class="">
-                    <a href="../backend/page-add-product.html">
+                    <a th:href="@{/pm/project/add}">
                         <i class="las la-minus"></i><span>Add Project</span>
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li class=" ">
+            <a href="#projectMem" class="collapsed" data-toggle="collapse" aria-expanded="false">
+                <svg class="svg-icon" id="p-dash7" width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline>
+                </svg>
+                <span class="ml-4">Project Members</span>
+                <svg class="svg-icon iq-arrow-right arrow-active" width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="10 15 15 20 20 15"></polyline><path d="M4 4h7a4 4 0 0 1 4 4v12"></path>
+                </svg>
+            </a>
+            <ul id="projectMem" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
+                <li class="">
+                    <a th:href="@{/pm/project_Mem/index}">
+                        <i class="las la-minus"></i><span>List Project Members</span>
+                    </a>
+                </li>
+                <li class="">
+                    <a th:href="@{/pm/project_Mem/add}">
+                        <i class="las la-minus"></i><span>Add Project Member</span>
                     </a>
                 </li>
             </ul>
@@ -98,12 +121,12 @@
             </a>
             <ul id="purchase" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
                 <li class="">
-                    <a th:href="@{/page-list-experience}">
+                    <a th:href="@{/employee/experience/index}">
                         <i class="las la-minus"></i><span>List Experience</span>
                     </a>
                 </li>
                 <li class="">
-                    <a th:href="@{/page-add-expericene}">
+                    <a th:href="@{/employee/experience/add}">
                         <i class="las la-minus"></i><span>Add Experience</span>
                     </a>
                 </li>

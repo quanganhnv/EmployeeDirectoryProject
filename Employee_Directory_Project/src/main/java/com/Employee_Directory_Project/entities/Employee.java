@@ -19,10 +19,10 @@ public class Employee {
     @Column(name = "id")
     private int id;
 
-    @Column(name = "firstName")
+    @Column(name = "first_name")
     private String firstName;
 
-    @Column(name = "lastName")
+    @Column(name = "last_name")
     private String lastName;
 
     @Column(name = "birthday")
@@ -51,6 +51,10 @@ public class Employee {
     @JsonIgnore
     @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL)
     private Set<Certificate> certificates = new HashSet<>();
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "employee" , cascade = CascadeType.ALL)
+    private Set<Project_Mem> project_Mems = new HashSet<>();
 
     @Column(name = "image_path")
     private String image_path;
@@ -224,5 +228,13 @@ public class Employee {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public Set<Project_Mem> getProject_Mems() {
+        return project_Mems;
+    }
+
+    public void setProject_Mems(Set<Project_Mem> project_Mems) {
+        this.project_Mems = project_Mems;
     }
 }

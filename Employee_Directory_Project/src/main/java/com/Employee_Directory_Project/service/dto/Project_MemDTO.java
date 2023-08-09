@@ -1,54 +1,37 @@
-package com.Employee_Directory_Project.entities;
+package com.Employee_Directory_Project.service.dto;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.hibernate.type.descriptor.sql.TinyIntTypeDescriptor;
-import org.springframework.stereotype.Component;
+import com.Employee_Directory_Project.entities.Employee;
+import com.Employee_Directory_Project.entities.Project;
 
 import javax.persistence.*;
 import java.sql.Date;
-import java.sql.Timestamp;
 import java.time.ZonedDateTime;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
-import java.util.HashSet;
-import java.util.Set;
 
-@Component
-@Entity
-@Table(name = "project_mem")
-public class Project_Mem {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id")
+public class Project_MemDTO {
     private int id;
-    @Column(name="operator")
     private String operator;
-    @Column(name="status")
     private String status;
-    @Column(name="description")
     private String description;
-    @Column(name="start_day")
     private Date start_day;
-    @Column(name="end_day")
     private Date end_day;
-    @Column(name="created_at")
     private ZonedDateTime created_at;
-    @Column(name = "updated_at")
     private ZonedDateTime updated_at;
-    @Column(name = "employee_id")
     private int employee_id;
-    @Column(name = "project_id")
     private int project_id;
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "employee_id", referencedColumnName = "id", insertable = false, updatable = false)
-    private Employee employee;
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "project_id", referencedColumnName = "id", insertable = false, updatable = false)
-    private Project project;
 
+    private String employee_name;
 
-    //////// Getter va Setter /////
+    private String employee_identity;
 
+    private String employee_department;
+
+    private String project_language;
+
+    private String project_name;
+
+    private String project_framework;
+
+    //////getter and setter/////
 
 
     public int getId() {
@@ -131,21 +114,51 @@ public class Project_Mem {
         this.project_id = project_id;
     }
 
-    public Employee getEmployee() {
-        return employee;
+    public String getEmployee_name() {
+        return employee_name;
     }
 
-    public void setEmployee(Employee employee) {
-        this.employee = employee;
+    public void setEmployee_name(String employee_name) {
+        this.employee_name = employee_name;
     }
 
-    public Project getProject() {
-        return project;
+    public String getProject_name() {
+        return project_name;
     }
 
-    public void setProject(Project project) {
-        this.project = project;
+    public void setProject_name(String project_name) {
+        this.project_name = project_name;
     }
 
+    public String getEmployee_identity() {
+        return employee_identity;
+    }
+
+    public void setEmployee_identity(String employee_identity) {
+        this.employee_identity = employee_identity;
+    }
+
+    public String getEmployee_department() {
+        return employee_department;
+    }
+
+    public void setEmployee_department(String employee_department) {
+        this.employee_department = employee_department;
+    }
+
+    public String getProject_language() {
+        return project_language;
+    }
+
+    public void setProject_language(String project_language) {
+        this.project_language = project_language;
+    }
+
+    public String getProject_framework() {
+        return project_framework;
+    }
+
+    public void setProject_framework(String project_framework) {
+        this.project_framework = project_framework;
+    }
 }
-

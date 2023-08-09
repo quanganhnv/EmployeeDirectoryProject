@@ -1,68 +1,31 @@
-package com.Employee_Directory_Project.entities;
+package com.Employee_Directory_Project.service.dto;
 
-
-import org.hibernate.annotations.Fetch;
+import com.Employee_Directory_Project.entities.Employee;
 
 import javax.persistence.*;
 import java.math.BigInteger;
 import java.sql.Date;
 import java.time.ZonedDateTime;
 
-@Entity
-@Table(name = "experience")
-public class Experience {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id")
+public class ExperienceDTO {
     private int id;
-
-    @Column(name="name")
     private String name;
-
-    @Column(name="language")
     private String language;
-
-    @Column(name="framework")
     private String framework;
-
-    @Column(name="operator")
     private String operator;
-
-    @Column(name="os")
     private String os;
-
-    @Column(name="description")
     private String description;
-
-    @Column(name="reference")
     private String reference;
-
-    @Column(name="total_size")
     private int total_size;
-
-    @Column(name="total_cost")
     private BigInteger total_cost;
-
-    @Column(name="start_day")
     private Date start_day;
-
-    @Column(name="end_day")
     private Date end_day;
-
-    @Column(name="created_at")
     private ZonedDateTime created_at;
-
-    @Column(name = "updated_at")
     private ZonedDateTime updated_at;
-
-    @Column(name = "employee_id")
     private int employee_id;
+    private String EmployeeName;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "employee_id", referencedColumnName = "id", insertable = false, updatable = false)
-    private Employee employee;
-
-    /////////Getter and Setter //////////
+    ///Getter and Setter ///
 
 
     public int getId() {
@@ -185,11 +148,11 @@ public class Experience {
         this.employee_id = employee_id;
     }
 
-    public Employee getEmployee() {
-        return employee;
+    public String getEmployeeName() {
+        return EmployeeName;
     }
 
-    public void setEmployee(Employee employee) {
-        this.employee = employee;
+    public void setEmployeeName(String employeeName) {
+        EmployeeName = employeeName;
     }
 }

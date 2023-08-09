@@ -1,6 +1,7 @@
 package com.Employee_Directory_Project.service.mapper;
 
 import java.util.List;
+import java.util.Set;
 
 public interface EntityMapper<D, E> {
     E toEntity(D dto);
@@ -10,4 +11,5 @@ public interface EntityMapper<D, E> {
     List<E> toEntity(List<D> dtoList);
 
     List<D> toDto(List<E> entityList);
+
 }

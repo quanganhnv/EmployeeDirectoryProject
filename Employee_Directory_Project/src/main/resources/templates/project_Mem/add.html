@@ -73,38 +73,31 @@
                 <div class="card">
                     <div class="card-header d-flex justify-content-between">
                         <div class="header-title">
-                            <h4 class="card-title">Add Project</h4>
+                            <h4 class="card-title">Add Project Members</h4>
                         </div>
                     </div>
                     <div class="card-body">
-                        <form th:action="@{/pm/project/add}" th:object ="${projectDTO}" method = "post" data-toggle="validator">
+                        <form th:action="@{/pm/project_Mem/add}" th:object ="${project_MemDTO}" method = "post" data-toggle="validator">
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <div class="form-group">
-                                            <label> Name *</label>
-                                            <input type="text" th:field="*{name}" class="form-control"  placeholder="Enter Name" data-errors="Please Enter Name." required>
+                                            <label> Operator *</label>
+                                            <input type="text" th:field="*{operator}" class="form-control"  placeholder="Enter Name" data-errors="Please Enter Name." required>
                                             <div class="help-block with-errors" ></div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label> Language *</label>
-                                        <input type="text" th:field = "*{language}" class="form-control" placeholder="Enter Language" data-errors="Please Enter Name." required>
+                                        <label> Status *</label>
+                                        <input type="text" th:field = "*{status}" class="form-control" placeholder="Enter Language" data-errors="Please Enter Name." required>
                                         <div class="help-block with-errors"></div>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label> Framework *</label>
-                                        <input type="text" th:field = "*{framework}" class="form-control" placeholder="Enter Framework Name" data-errors="Please Enter Code." required>
-                                        <div class="help-block with-errors"></div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                        <label> Project Manager *</label>
-                                        <select  th:field = "*{manager_id}" class="form-control">
+                                        <label> Employee *</label>
+                                        <select  th:field = "*{employee_id}" class="form-control">
                                             <option th:each="candidate : ${candidates}" th:value="${candidate.id}">
                                                 <span th:text = "${candidate.firstName}+' '+${candidate.lastName}"></span>
                                                 <span>  in department  </span>
@@ -112,45 +105,17 @@
                                             </option>
                                         </select>
                                         <div class="help-block with-errors"></div>
-                                    </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Total Size *</label>
-                                        <input type="number" th:field = "*{total_size}" class="form-control" placeholder="Total Size" data-errors="Please Enter Code." required>
-                                        <div class="help-block with-errors"></div>
-                                    </div>
                                 </div>
                                 <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Total_cost *</label>
-                                        <input type="number" th:field = "*{total_cost}" class="form-control" placeholder="Enter Cost" data-errors="Please Enter Code." required>
-                                        <div class="help-block with-errors"></div>
-                                    </div>
+                                    <label> Project *</label>
+                                    <select  th:field = "*{project_id}" class="form-control">
+                                        <option th:each="projectcandi : ${projects}" th:value="${projectcandi.id}">
+                                            <span th:text = "${projectcandi.name}"></span>
+                                        </option>
+                                    </select>
+                                    <div class="help-block with-errors"></div>
                                 </div>
 
-
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label>Reference</label>
-                                        <input type="text" th:field = "*{reference}" class="form-control" placeholder="Enter Reference" data-errors="Please Enter Code." >
-                                        <div class="help-block with-errors"></div>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label>Operator</label>
-                                        <input type="text" th:field = "*{operator}" class="form-control" placeholder="Enter Operator" data-errors="Please Enter Code." >
-                                        <div class="help-block with-errors"></div>
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label>Operating System</label>
-                                        <input type="text" th:field = "*{os}" class="form-control" placeholder="Enter os" data-errors="Please Enter Code." >
-                                        <div class="help-block with-errors"></div>
-                                    </div>
-                                </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label> Start day *</label>
@@ -160,7 +125,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label> End day</label>
+                                        <label> End day *</label>
                                         <input type="date" th:field = "*{end_day}" class="form-control" required >
                                         <div class="help-block with-errors"></div>
                                     </div>
@@ -172,7 +137,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <button type="submit" class="btn btn-primary mr-2">Add Project</button>
+                            <button type="submit" class="btn btn-primary mr-2">Add Project_Mem</button>
                             <button type="reset" class="btn btn-danger">Reset</button>
                         </form>
                     </div>
