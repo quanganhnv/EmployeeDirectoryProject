@@ -20,7 +20,7 @@ import java.util.Set;
 
 import static javax.persistence.TemporalType.TIMESTAMP;
 
-@EntityListeners(AuditingEntityListener.class)
+@Component
 @Entity
 @Table(name = "project")
 public class Project implements Serializable {
@@ -31,59 +31,61 @@ public class Project implements Serializable {
     @Column(name = "id")
     private int id;
 
-    @Column(name="name")
+    @Column(name = "name")
     private String name;
 
-    @Column(name="language")
+    @Column(name = "language")
     private String language;
 
-    @Column(name="framework")
+    @Column(name = "framework")
     private String framework;
 
-    @Column(name="operator")
+    @Column(name = "operator")
     private String operator;
 
-    @Column(name="os")
+    @Column(name = "os")
     private String os;
 
-    @Column(name="description")
+    @Column(name = "description")
     private String description;
 
-    @Column(name="total_size")
+    @Column(name = "total_size")
     private int total_size;
 
-    @Column(name="total_cost")
+    @Column(name = "total_cost")
     private float total_cost;
 
-    @Column(name="reference")
+    @Column(name = "reference")
     private String reference;
 
-    @Column(name="start_day")
+    @Column(name = "start_day")
     private Date start_day;
 
-    @Column(name="end_day")
+    @Column(name = "end_day")
     private Date end_day;
 
-    @Column(name="updated_at")
-    private Timestamp updated_at;
+    @Column(name = "updated_at")
+    private ZonedDateTime updated_at ;
+
+    @Column(name = "created_at")
     @NotNull
+    private ZonedDateTime created_at ;
+
     @Column(name = "pm_id")
+    @NotNull
     private int pm_id;
 
-    @LastModifiedDate
-    @NotNull
-    @Column(name="created_at")
-    private ZonedDateTime created_at = ZonedDateTime.now();
-
-
     @JsonIgnore
-    @OneToMany(mappedBy = "project" , cascade = CascadeType.ALL)
-    private Set<Project_Mem> project_mems = new HashSet<>();
+    @OneToMany(mappedBy = "project", cascade = CascadeType.ALL)
+    private Set<Project_Mem> project_Mems = new HashSet<>();
+
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "pm_id" ,referencedColumnName = "id" ,insertable = false,updatable = false)
+    @JoinColumn(name = "pm_id", referencedColumnName = "id", insertable = false, updatable = false)
     private Employee employee;
 
+
+    //////// Getter And Setter   ///////////////
 
 
 
@@ -183,32 +185,11 @@ public class Project implements Serializable {
         this.end_day = end_day;
     }
 
-
-    public Set<Project_Mem> getProject_mems() {
-        return project_mems;
-    }
-
-    public void setProject_mems(Set<Project_Mem> project_mems) {
-        this.project_mems = project_mems;
-    }
-
-    public Employee getEmployee() {
-        return employee;
-    }
-
-    public void setEmployee(Employee employee) {
-        this.employee = employee;
-    }
-    public int getPm_id() {return pm_id;}
-    public void setPm_id(int pm_id) {
-        this.pm_id = pm_id;
-    }
-
-    public Timestamp getUpdated_at() {
+    public ZonedDateTime getUpdated_at() {
         return updated_at;
     }
 
-    public void setUpdated_at(Timestamp updated_at) {
+    public void setUpdated_at(ZonedDateTime updated_at) {
         this.updated_at = updated_at;
     }
 
@@ -218,5 +199,29 @@ public class Project implements Serializable {
 
     public void setCreated_at(ZonedDateTime created_at) {
         this.created_at = created_at;
+    }
+
+    public int getPm_id() {
+        return pm_id;
+    }
+
+    public void setPm_id(int pm_id) {
+        this.pm_id = pm_id;
+    }
+
+    public Set<Project_Mem> getProject_Mems() {
+        return project_Mems;
+    }
+
+    public void setProject_Mems(Set<Project_Mem> project_Mems) {
+        this.project_Mems = project_Mems;
+    }
+
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
     }
 }

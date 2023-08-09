@@ -3,6 +3,7 @@ package com.Employee_Directory_Project.service;
 import com.Employee_Directory_Project.service.dto.EmployeeDTO;
 import org.springframework.data.domain.*;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface EmployeeService {
@@ -20,4 +21,6 @@ public interface EmployeeService {
     Optional<EmployeeDTO> findOne(Integer id);
 
     void delete(Integer id);
+
+    List<EmployeeDTO> findAll();
 }

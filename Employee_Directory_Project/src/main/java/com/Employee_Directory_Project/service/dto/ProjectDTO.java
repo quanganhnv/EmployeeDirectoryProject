@@ -1,12 +1,16 @@
 package com.Employee_Directory_Project.service.dto;
 
-import java.io.Serializable;
+import com.Employee_Directory_Project.entities.Project_Mem;
+
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.time.ZonedDateTime;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
-public class ProjectDTO implements Serializable {
+public class ProjectDTO {
+
     private int id;
     private String name;
     private String language;
@@ -19,11 +23,16 @@ public class ProjectDTO implements Serializable {
     private String reference;
     private Date start_day;
     private Date end_day;
-    private ZonedDateTime updated_at = ZonedDateTime.now();
-    private ZonedDateTime created_at = ZonedDateTime.now();
+    private ZonedDateTime updated_at;
+    private ZonedDateTime created_at;
 
-    private int pm_id;
-    private String pm_name;
+    private int manager_id;
+    private String manager_name;
+
+    private List<Project_MemDTO> project_MemsDTO;
+
+    ////////////Getter And Setter ///////////
+
 
     public int getId() {
         return id;
@@ -137,20 +146,27 @@ public class ProjectDTO implements Serializable {
         this.created_at = created_at;
     }
 
-    public int getPm_id() {
-        return pm_id;
+    public int getManager_id() {
+        return manager_id;
     }
 
-    public void setPm_id(int pm_id) {
-        this.pm_id = pm_id;
+    public void setManager_id(int manager_id) {
+        this.manager_id = manager_id;
     }
 
-    public String getPm_name() {
-        return pm_name;
+    public String getManager_name() {
+        return manager_name;
     }
 
-    public void setPm_name(String pm_name) {
-        this.pm_name = pm_name;
+    public void setManager_name(String manager_name) {
+        this.manager_name = manager_name;
     }
 
+    public List<Project_MemDTO> getProject_MemsDTO() {
+        return project_MemsDTO;
+    }
+
+    public void setProject_MemsDTO(List<Project_MemDTO> project_MemsDTO) {
+        this.project_MemsDTO = project_MemsDTO;
+    }
 }

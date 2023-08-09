@@ -17,9 +17,11 @@ public interface ProjectRepository extends JpaRepository <Project, Integer> , Jp
 
     Page<Project> findAllByNameContainingIgnoreCase(String textSearchName, Pageable pageable);
 
+
     List<Project> findAll();
 
     Project findAllById(Integer Id);
+
 }
 
 

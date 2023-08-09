@@ -73,11 +73,11 @@
                     <div class="card">
                         <div class="card-header d-flex justify-content-between">
                             <div class="header-title">
-                                <h4 class="card-title">Update Project</h4>
+                                <h4 class="card-title">Update Experience</h4>
                             </div>
                         </div>
                         <div class="card-body">
-                            <form th:action="@{/pm/project/update/{id}(id = ${projectDTO.id})}" th:object ="${projectDTO}" method = "post" data-toggle="validator">
+                            <form th:action="@{/employee/experience/update/{id}(id = ${experienceDTO.id})}" th:object ="${experienceDTO}" method = "post" data-toggle="validator">
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
@@ -103,17 +103,6 @@
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <label> Project Manager *</label>
-                                        <select  th:field = "*{manager_id}" class="form-control">
-                                            <option th:each="candidate : ${candidates}" th:value="${candidate.id}">
-                                                <span th:text = "${candidate.firstName}+' '+${candidate.lastName}"></span>
-                                                <span>  in department  </span>
-                                                <span th:text = "' '+ ${candidate.department_name}"></span>
-                                            </option>
-                                        </select>
-                                        <div class="help-block with-errors"></div>
-                                    </div>
-                                    <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Total Size *</label>
                                             <input type="number" th:field = "*{total_size}" class="form-control" placeholder="Total Size" data-errors="Please Enter Code." required>
@@ -123,7 +112,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Total_cost *</label>
-                                            <input type="number" th:field = "*{total_cost}" class="form-control" placeholder="Enter Cost" data-errors="Please Enter Code." required>
+                                            <input type="text" th:field = "*{total_cost}" class="form-control" placeholder="Enter Cost" data-errors="Please Enter Code." required>
                                             <div class="help-block with-errors"></div>
                                         </div>
                                     </div>
@@ -172,7 +161,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <button type="submit" class="btn btn-primary mr-2">Update Project</button>
+                                <button type="submit" class="btn btn-primary mr-2">Update Experience</button>
                                 <button type="reset" class="btn btn-danger">Reset</button>
                             </form>
                         </div>

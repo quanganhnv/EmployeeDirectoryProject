@@ -1,16 +1,16 @@
 
 <!doctype html>
-<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title> Employee Directory </title>
 
     <!-- Favicon -->
-    <link rel="shortcut icon" th:href="@{/images/favicon.ico}" />
+    <link rel="shortcut icon" th:href="@{/images/favicon.ico}"/>
     <link rel="stylesheet" th:href="@{/css/backend-plugin.min.css}">
     <link rel="stylesheet" th:href="@{/css/backend.css}">
-    <link rel="stylesheet" th:href="@{/vendor@fortawesome/fontawesome-free/css/all.min.css}">
+    <link rel="stylesheet" th:href="@{/vendor/@fortawesome/fontawesome-free/css/all.min.css}">
     <link rel="stylesheet" th:href="@{/vendor/line-awesome/dist/line-awesome/css/line-awesome.min.css}">
     <link rel="stylesheet" th:href="@{/vendor/remixicon/fonts/remixicon.css}">
 </head>
@@ -27,7 +27,8 @@
     <div class="iq-sidebar  sidebar-default ">
         <div class="iq-sidebar-logo d-flex align-items-center justify-content-between">
             <a th:href="@{/index}" class="header-logo">
-                <img th:src="@{/images/logo.png}" class="img-fluid rounded-normal light-logo" alt="logo"><h5 class="logo-title light-logo ml-3">Employee Directory</h5>
+                <img th:src="@{/images/logo.png}" class="img-fluid rounded-normal light-logo" alt="logo" src=""><h5
+                    class="logo-title light-logo ml-3">Employee Directory</h5>
             </a>
             <div class="iq-menu-bt-sidebar ml-0">
                 <i class="las la-bars wrapper-menu"></i>
@@ -39,8 +40,10 @@
         </div>
     </div>
     <div class="iq-top-navbar">
-        <div class="iq-navbar-custom">
-            <div th:replace="fragments/header :: header"></div>
+        <div class="iq-top-navbar">
+            <div class="iq-navbar-custom">
+                <div th:replace="fragments/header :: header"></div>
+            </div>
         </div>
     </div>
     <div class="modal fade" id="new-order" tabindex="-1" role="dialog" aria-hidden="true">
@@ -52,7 +55,7 @@
                         <div class="content create-workform bg-body">
                             <div class="pb-3">
                                 <label class="mb-2">Email</label>
-                                <input type="text" class="form-control" placeholder="Enter Name or Email">
+                                <input type="text" class="form-control" readonly="readonly" placeholder="Enter Name or Email">
                             </div>
                             <div class="col-lg-12 mt-4">
                                 <div class="d-flex flex-wrap align-items-ceter justify-content-center">
@@ -67,121 +70,118 @@
         </div>
     </div>
     <div class="content-page">
-    <div class="container-fluid add-form-list">
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="card">
-                    <div class="card-header d-flex justify-content-between">
-                        <div class="header-title">
-                            <h4 class="card-title">Add Project</h4>
+        <div class="container-fluid add-form-list">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="card">
+                        <div class="card-header d-flex justify-content-between">
+                            <div class="header-title">
+                                <h4 th:text="${experienceDTO.name}" class="card-title"></h4>
+                            </div>
                         </div>
-                    </div>
-                    <div class="card-body">
-                        <form th:action="@{/pm/project/add}" th:object ="${projectDTO}" method = "post" data-toggle="validator">
+                        <div class="card-body" th:object="${experienceDTO}">
                             <div class="row">
                                 <div class="col-md-12">
-                                    <div class="form-group">
-                                        <div class="form-group">
+                                        <div class="form-group" readonly="readonly">
                                             <label> Name *</label>
-                                            <input type="text" th:field="*{name}" class="form-control"  placeholder="Enter Name" data-errors="Please Enter Name." required>
-                                            <div class="help-block with-errors" ></div>
+                                            <span th:text="*{name}" class="form-control" readonly="readonly"></span>
+                                            <div class="help-block with-errors"></div>
                                         </div>
-                                    </div>
                                 </div>
                                 <div class="col-md-6">
-                                    <div class="form-group">
+                                    <div class="form-group" readonly="readonly">
                                         <label> Language *</label>
-                                        <input type="text" th:field = "*{language}" class="form-control" placeholder="Enter Language" data-errors="Please Enter Name." required>
+                                        <span class="form-control" readonly="readonly" th:text="*{language}"></span>
                                         <div class="help-block with-errors"></div>
                                     </div>
                                 </div>
+
                                 <div class="col-md-6">
-                                    <div class="form-group">
+                                    <div class="form-group" readonly="readonly">
                                         <label> Framework *</label>
-                                        <input type="text" th:field = "*{framework}" class="form-control" placeholder="Enter Framework Name" data-errors="Please Enter Code." required>
+                                        <span class="form-control" readonly="readonly" th:text="*{framework}"></span>
                                         <div class="help-block with-errors"></div>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
-                                        <label> Project Manager *</label>
-                                        <select  th:field = "*{manager_id}" class="form-control">
-                                            <option th:each="candidate : ${candidates}" th:value="${candidate.id}">
-                                                <span th:text = "${candidate.firstName}+' '+${candidate.lastName}"></span>
-                                                <span>  in department  </span>
-                                                <span th:text = "' '+ ${candidate.department_name}"></span>
-                                            </option>
-                                        </select>
-                                        <div class="help-block with-errors"></div>
-                                    </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
+                                    <div class="form-group" readonly="readonly">
                                         <label>Total Size *</label>
-                                        <input type="number" th:field = "*{total_size}" class="form-control" placeholder="Total Size" data-errors="Please Enter Code." required>
+                                        <span class="form-control" readonly="readonly" th:text="*{total_size}"></span>
                                         <div class="help-block with-errors"></div>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
-                                    <div class="form-group">
+                                    <div class="form-group" readonly="readonly">
                                         <label>Total_cost *</label>
-                                        <input type="number" th:field = "*{total_cost}" class="form-control" placeholder="Enter Cost" data-errors="Please Enter Code." required>
+                                        <span class="form-control" readonly="readonly" th:text="*{total_cost}"></span>
                                         <div class="help-block with-errors"></div>
                                     </div>
                                 </div>
 
-
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label>Reference</label>
-                                        <input type="text" th:field = "*{reference}" class="form-control" placeholder="Enter Reference" data-errors="Please Enter Code." >
-                                        <div class="help-block with-errors"></div>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label>Operator</label>
-                                        <input type="text" th:field = "*{operator}" class="form-control" placeholder="Enter Operator" data-errors="Please Enter Code." >
-                                        <div class="help-block with-errors"></div>
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="form-group">
+                                <div class="col-md-6">
+                                    <div class="form-group" readonly="readonly">
                                         <label>Operating System</label>
-                                        <input type="text" th:field = "*{os}" class="form-control" placeholder="Enter os" data-errors="Please Enter Code." >
+                                        <span class="form-control" readonly="readonly" th:text="*{os}"></span>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <div class="form-group" readonly="readonly">
+                                        <label>Reference</label>
+                                        <span class="form-control" readonly="readonly" th:text="*{reference}"></span>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <div class="form-group" readonly="readonly">
+                                        <label>Operator</label>
+                                        <span class="form-control" readonly="readonly" th:text="*{operator}"></span>
                                         <div class="help-block with-errors"></div>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
-                                    <div class="form-group">
+                                    <div class="form-group" readonly="readonly">
                                         <label> Start day *</label>
-                                        <input type="date" th:field = "*{start_day}" class="form-control"  required>
+                                        <span class="form-control" readonly="readonly" th:text="*{start_day}"></span>
                                         <div class="help-block with-errors"></div>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
-                                    <div class="form-group">
+                                    <div class="form-group" readonly="readonly">
                                         <label> End day</label>
-                                        <input type="date" th:field = "*{end_day}" class="form-control" required >
+                                        <span class="form-control" readonly="readonly" th:text="*{end_day}"> </span>
                                         <div class="help-block with-errors"></div>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
-                                    <div class="form-group">
+                                    <div class="form-group" readonly="readonly">
                                         <label>Description </label>
-                                        <textarea class="form-control" th:field = "*{description}" rows="4"></textarea>
+                                        <textarea class="form-control" readonly="readonly" th:text="*{description}" rows="4"></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group" readonly="readonly">
+                                        <label>created at :     </label>
+                                        <span th:text="*{created_at}"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group" readonly="readonly">
+                                        <label>updated at :     </label>
+                                        <span th:text="*{updated_at}"></span>
                                     </div>
                                 </div>
                             </div>
-                            <button type="submit" class="btn btn-primary mr-2">Add Project</button>
-                            <button type="reset" class="btn btn-danger">Reset</button>
-                        </form>
+                            <a th:href="@{/employee/experience/update/{id}(id = *{id})}" class="btn btn-primary mr-2">Update experience</a>
+                            <a th:href="@{/employee/experience/index/{id}(id = *{id})}" class="btn btn-danger">Delete experience</a></div>
                     </div>
                 </div>
             </div>
+            <!-- Page end  -->
         </div>
-        <!-- Page end  -->
     </div>
-</div>
 </div>
 <!-- Wrapper End-->
 <footer class="iq-footer">

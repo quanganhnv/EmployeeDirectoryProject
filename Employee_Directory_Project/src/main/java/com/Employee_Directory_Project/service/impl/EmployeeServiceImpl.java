@@ -4,12 +4,14 @@ import com.Employee_Directory_Project.entities.Employee;
 import com.Employee_Directory_Project.repository.EmployeeRepository;
 import com.Employee_Directory_Project.service.EmployeeService;
 import com.Employee_Directory_Project.service.dto.EmployeeDTO;
+import com.Employee_Directory_Project.service.dto.ProjectDTO;
 import com.Employee_Directory_Project.service.mapper.EmployeeMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -58,5 +60,10 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public void delete(Integer id) {
         employeeRepository.deleteById(id);
+    }
+
+    @Override
+    public List<EmployeeDTO> findAll(){
+        return employeeMapper.toDto(employeeRepository.findAll());
     }
 }

@@ -17,10 +17,12 @@ public interface ProjectService {
     Page<ProjectDTO> findAllByNameContainingIgnoreCase( String textSearch,Pageable pageable);
 
     List<ProjectDTO> findAll();
+
     Optional<ProjectDTO> findOne(Integer id);
 
     void delete(Integer id);
 
     ProjectDTO findAllById(Integer id);
 
+    ProjectDTO update(ProjectDTO projectDTO ,Integer id);
 }
