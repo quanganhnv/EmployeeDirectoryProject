@@ -8,11 +8,13 @@ import java.util.Optional;
 
 public interface EmployeeService {
 
-    EmployeeDTO save(EmployeeDTO notifyDTO);
+    EmployeeDTO save(EmployeeDTO employeeDTO);
 
     Page<EmployeeDTO> findAllByFirstNameOrLastName(String firstName, String lastName, Pageable pageable);
 
     Page<EmployeeDTO> findAll(Pageable pageable);
+
+    List<EmployeeDTO> findAll();
 
     Page<EmployeeDTO> findAllByDepartment(Integer department_id, Pageable pageable);
 
@@ -21,6 +23,4 @@ public interface EmployeeService {
     Optional<EmployeeDTO> findOne(Integer id);
 
     void delete(Integer id);
-
-    List<EmployeeDTO> findAll();
 }

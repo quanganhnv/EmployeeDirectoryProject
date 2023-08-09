@@ -5,7 +5,6 @@ import com.Employee_Directory_Project.security.AccountDetails;
 import com.Employee_Directory_Project.service.CertificateService;
 import com.Employee_Directory_Project.service.EmployeeService;
 import com.Employee_Directory_Project.service.dto.CertificateDTO;
-import com.Employee_Directory_Project.service.dto.EmployeeDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.Authentication;
@@ -35,10 +34,12 @@ public class CertificateController {
         ModelAndView mav = new ModelAndView("/certificate/index");
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         AccountDetails accountDetails = (AccountDetails)authentication.getPrincipal();
+
         Page<CertificateDTO> listCertificate = certificateService.findAll(accountDetails.getEmployeeID(),textSearch, pageable);
 
         mav.addObject("listCertificate", listCertificate)
-                .addObject("employee_name",  listCertificate.getContent().get(0).getEmployee_name())
+                .addObject("id", accountDetails.getEmployeeID())
+                .addObject("employee_name",  accountDetails.getFullName())
                 .addObject("email", accountDetails.getEmail())
                 .addObject("avatar_path", accountDetails.getAvatarPath())
                 .addObject("objectSearchPage", "certificate");
@@ -54,7 +55,7 @@ public class CertificateController {
         Page<CertificateDTO> page = certificateService.findAll(accountDetails.getEmployeeID(), textSearch, pageable);
 
         mav.addObject("listCertificate", page)
-                .addObject("objectSearchPage", "employee")
+                .addObject("id", accountDetails.getEmployeeID())
                 .addObject("email", accountDetails.getEmail())
                 .addObject("avatar_path", accountDetails.getAvatarPath())
                 .addObject("objectSearchPage", "certificate");
@@ -69,6 +70,8 @@ public class CertificateController {
         certificateService.delete(id);
         Page<CertificateDTO> page = certificateService.findAll(accountDetails.getEmployeeID(),textSearch,pageable);
         mav.addObject("listCertificate", page)
+                .addObject("id", accountDetails.getEmployeeID())
+                .addObject("employee_name",  accountDetails.getFullName())
                 .addObject("messages", "Delete Success !")
                 .addObject("email", accountDetails.getEmail())
                 .addObject("avatar_path", accountDetails.getAvatarPath())
@@ -83,6 +86,7 @@ public class CertificateController {
         CertificateDTO certificateDTO = new CertificateDTO();
         ModelAndView mav = new ModelAndView("/certificate/add");
         mav.addObject("certificate", certificateDTO)
+                .addObject("id", accountDetails.getEmployeeID())
                 .addObject("email", accountDetails.getEmail())
                 .addObject("avatar_path", accountDetails.getAvatarPath())
                 .addObject("objectSearchPage", "certificate");
@@ -90,13 +94,16 @@ public class CertificateController {
     }
 
     @PostMapping("/add")
-    public ModelAndView createCertificate (@ModelAttribute("certificate") CertificateDTO certificateDTO) {
+    public ModelAndView createCertificate (@ModelAttribute("certificate") CertificateDTO certificateDTO, Pageable pageable) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         AccountDetails accountDetails = (AccountDetails)authentication.getPrincipal();
         certificateDTO.setEmployee_id(accountDetails.getEmployeeID());
         CertificateDTO result = certificateService.save(certificateDTO);
         ModelAndView mav = new ModelAndView("/certificate/index");
-        mav.addObject("certificate", certificateDTO)
+        Page<CertificateDTO> listCertificate = certificateService.findAll(accountDetails.getEmployeeID(),"", pageable);
+        mav.addObject("listCertificate", listCertificate)
+                .addObject("id", accountDetails.getEmployeeID())
+                .addObject("employee_name",  accountDetails.getFullName())
                 .addObject("email", accountDetails.getEmail())
                 .addObject("avatar_path", accountDetails.getAvatarPath())
                 .addObject("objectSearchPage", "certificate");
@@ -110,6 +117,7 @@ public class CertificateController {
         ModelAndView mav = new ModelAndView("/certificate/edit");
         mav.addObject("certificate", certificateService.findOne(accountDetails.getEmployeeID(),id).get())
                 .addObject("email", accountDetails.getEmail())
+                .addObject("id", accountDetails.getEmployeeID())
                 .addObject("avatar_path", accountDetails.getAvatarPath())
                 .addObject("objectSearchPage", "certificate");
         return mav;
@@ -137,8 +145,10 @@ public class CertificateController {
         Page<CertificateDTO> page = certificateService.findAll(accountDetails.getEmployeeID(), textSearch, pageable);
         mav.addObject("listCertificate", page)
                 .addObject("messages", "Editing Certificate details successfully !")
+                .addObject("employee_name",  accountDetails.getFullName())
                 .addObject("email", accountDetails.getEmail())
                 .addObject("avatar_path", accountDetails.getAvatarPath())
+                .addObject("id", accountDetails.getEmployeeID())
                 .addObject("objectSearchPage", "certificate");
         return mav;
     }

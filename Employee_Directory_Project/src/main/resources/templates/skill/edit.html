@@ -1,47 +1,47 @@
-<!doctype html>
+    <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
+  <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Employee Diretory Project</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <title>Employee Diretory Project</title>
 
-    <!-- Favicon -->
-    <link rel="shortcut icon" th:href="@{/images/favicon.ico}" />
-    <link rel="stylesheet" th:href="@{/css/backend-plugin.min.css}">
-    <link rel="stylesheet" th:href="@{/css/backend.css}">
-    <link rel="stylesheet" th:href="@{/vendor/@fortawesome/fontawesome-free/css/all.min.css}">
-    <link rel="stylesheet" th:href="@{/vendor/line-awesome/dist/line-awesome/css/line-awesome.min.css}">
-    <link rel="stylesheet" th:href="@{/vendor/remixicon/fonts/remixicon.css}">
-</head>
-<body class="  ">
-<!-- loader Start -->
-<div id="loading">
-    <div id="loading-center">
+      <!-- Favicon -->
+      <link rel="shortcut icon" th:href="@{/images/favicon.ico}" />
+      <link rel="stylesheet" th:href="@{/css/backend-plugin.min.css}">
+      <link rel="stylesheet" th:href="@{/css/backend.css}">
+      <link rel="stylesheet" th:href="@{/vendor/@fortawesome/fontawesome-free/css/all.min.css}">
+      <link rel="stylesheet" th:href="@{/vendor/line-awesome/dist/line-awesome/css/line-awesome.min.css}">
+      <link rel="stylesheet" th:href="@{/vendor/remixicon/fonts/remixicon.css}">
+  </head>
+  <body class="  ">
+    <!-- loader Start -->
+    <div id="loading">
+          <div id="loading-center">
+          </div>
     </div>
-</div>
-<!-- loader END -->
-<!-- Wrapper Start -->
-<div class="wrapper">
+    <!-- loader END -->
+    <!-- Wrapper Start -->
+    <div class="wrapper">
 
-    <div class="iq-sidebar  sidebar-default ">
-        <div class="iq-sidebar-logo d-flex align-items-center justify-content-between">
-            <a th:href="@{/index}" class="header-logo">
-                <img th:src="@{/images/logo.png}" class="img-fluid rounded-normal light-logo" alt="logo"><h5 class="logo-title light-logo ml-3">Employee Directory Project</h5>
-            </a>
-            <div class="iq-menu-bt-sidebar ml-0">
-                <i class="las la-bars wrapper-menu"></i>
-            </div>
-        </div>
-        <div class="data-scrollbar" data-scroll="1">
-            <div th:replace="fragments/sidebar :: sidebar"></div>
-            <div class="p-3"></div>
-        </div>
-    </div>
-    <div class="iq-top-navbar">
-        <div class="iq-navbar-custom">
-            <div th:replace="fragments/header :: header"></div>
-        </div>
-    </div>
+      <div class="iq-sidebar  sidebar-default ">
+          <div class="iq-sidebar-logo d-flex align-items-center justify-content-between">
+              <a th:href="@{/index}" class="header-logo">
+                  <img th:src="@{/images/logo.png}" class="img-fluid rounded-normal light-logo" alt="logo"><h5 class="logo-title light-logo ml-3">Employee Directory Project</h5>
+              </a>
+              <div class="iq-menu-bt-sidebar ml-0">
+                  <i class="las la-bars wrapper-menu"></i>
+              </div>
+          </div>
+          <div class="data-scrollbar" data-scroll="1">
+              <div th:replace="fragments/sidebar :: sidebar"></div>
+              <div class="p-3"></div>
+          </div>
+          </div>
+        <div class="iq-top-navbar">
+          <div class="iq-navbar-custom">
+              <div th:replace="fragments/header :: header"></div>
+          </div>
+      </div>
     <div class="modal fade" id="new-order" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
@@ -71,39 +71,44 @@
                 <div class="card">
                     <div class="card-header d-flex justify-content-between">
                         <div class="header-title">
-                            <h4 class="card-title">Edit Account</h4>
+                            <h4 class="card-title">Edit Skill</h4>
                             <h3 th:text="${messages}"></h3>
                         </div>
                     </div>
                     <div class="card-body">
-                        <form th:action="@{'/admin/account/edit/' + ${account.id}}" method="post" th:object="${account}" >
+                        <form th:action="@{'/skill/edit/' + ${skill.id}}" method="post" th:object="${skill}" >
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label>Employee Name</label>
-                                        <input type="text" name = "employee_name" class="form-control" th:field="*{employee_name}" readonly="readonly"/>
+                                        <input type="text" name = "employee_name" class="form-control" th:value="${skill.employee_name}" readonly = "readonly" />
                                         <div class="help-block with-errors"></div>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label>Email *</label>
-                                        <input type="text" name = "email" class="form-control" th:field="*{email}" placeholder="Enter Email" required />
+                                        <label>Employee Id</label>
+                                        <input type="text" name = "employee_id" class="form-control" th:value="${skill.employee_id}" readonly = "readonly" />
                                         <div class="help-block with-errors"></div>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label>Username *</label>
-                                        <input type="text" name = "username" class="form-control" th:field="*{username}" placeholder="Enter Username" required />
+                                        <label>Name *</label>
+                                        <input type="text" name = "name" class="form-control" th:value="*{name}" placeholder="Enter Skill Name" required />
                                         <div class="help-block with-errors"></div>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label>Role *</label>
-                                        <select th:field = "*{role_id}" class="form-control">
-                                            <option th:each="role : ${listRole}" th:value="${role}" th:selected="(${account.role_id} == ${role} ? true : false)" th:text="${role}"></option>
+                                        <label>Level *</label>
+                                        <select th:field = "*{level}" class="form-control">
+                                            <option th:each="level : ${listLevel}" th:value="${level}" th:selected="(${skill.level} == ${level} ? true : false)">
+                                                <span th:if="${level} == 0">Fresher</span>
+                                                <span th:if="${level} == 1">Junior</span>
+                                                <span th:if="${level} == 2">Senior</span>
+                                                <span th:if="${level} == 3">Master</span>
+                                            </option>
                                         </select>
                                         <div class="help-block with-errors"></div>
                                     </div>
@@ -111,13 +116,8 @@
 
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label>Status Account *</label>
-                                        <select th:field = "*{status}" class="form-control">
-                                            <option th:each="status : ${listStatus}" th:value="${status}" th:selected="(${account.status} == ${status} ? true : false)">
-                                                <span th:if="${status} == 1">Active</span>
-                                                <span th:if="${status} == 0">Inactive</span>
-                                            </option>
-                                        </select>
+                                        <label>Description</label>
+                                        <input type="text" name = "description" class="form-control" th:value="*{description}" placeholder="Enter Description" />
                                         <div class="help-block with-errors"></div>
                                     </div>
                                 </div>
@@ -134,9 +134,9 @@
 </div>
 </div>
 <!-- Wrapper End-->
-<footer class="iq-footer">
-    <div th:replace="fragments/footer :: footer"></div>
-</footer>
+  <footer class="iq-footer">
+        <div th:replace="fragments/footer :: footer"></div>
+    </footer>
 <!-- Backend Bundle JavaScript -->
 <script th:src="@{/js/backend-bundle.min.js}"></script>
 

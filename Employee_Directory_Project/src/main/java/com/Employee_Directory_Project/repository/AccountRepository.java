@@ -12,4 +12,8 @@ public interface AccountRepository extends JpaRepository<Account, Integer> {
     public Account findByUsername(String username);
 
     Page<Account> findAll(Pageable pageable);
+
+    public Account findByRememberToken(String token);
+
+    public Account findByEmail(String email);
 }

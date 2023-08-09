@@ -43,6 +43,8 @@ public class AccountDetails implements UserDetails {
 
     public String getEmail(){return account.getEmail();}
 
+    public String getFullName(){return account.getEmployee().getFullName();}
+
     @Override
     public boolean isAccountNonExpired() {
         return true;

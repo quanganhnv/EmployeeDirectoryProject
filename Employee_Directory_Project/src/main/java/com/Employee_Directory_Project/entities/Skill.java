@@ -1,20 +1,23 @@
 package com.Employee_Directory_Project.entities;
 
 
+import com.sun.istack.NotNull;
 import org.hibernate.type.descriptor.sql.TinyIntTypeDescriptor;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 import java.math.BigInteger;
 import java.sql.Date;
-@Component
+import java.time.ZonedDateTime;
+
 @Entity
 @Table(name = "skill")
 public class Skill {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id")
-    private int id;
+    private Integer id;
 
     @Column(name="name")
     private String name;
@@ -23,23 +26,32 @@ public class Skill {
     private String description;
 
     @Column(name="level")
-    private TinyIntTypeDescriptor level;
+    private int level;
 
-    @Column(name="created_at")
-    private String created_at;
+    @Column(name = "employee_id")
+    private int employee_id;
 
-    @Column(name = "updated_at")
-    private String updated_at;
+    @Column(name = "years_of_experience")
+    private int years_of_experience;
 
-    @ManyToOne
-    @JoinColumn(name="employee_id" ,referencedColumnName = "id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="employee_id" ,referencedColumnName = "id", insertable = false, updatable = false)
     private Employee employee;
 
-    public int getId() {
+    @CreatedDate
+    @NotNull
+    @Column(name = "created_at", nullable = false, updatable = false)
+    private ZonedDateTime createdDate = ZonedDateTime.now();
+
+    @LastModifiedDate
+    @Column(name = "updated_at")
+    private ZonedDateTime lastModifiedDate = ZonedDateTime.now();
+
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -59,35 +71,51 @@ public class Skill {
         this.description = description;
     }
 
-    public TinyIntTypeDescriptor getLevel() {
-        return level;
-    }
-
-    public void setLevel(TinyIntTypeDescriptor level) {
-        this.level = level;
-    }
-
-    public String getCreated_at() {
-        return created_at;
-    }
-
-    public void setCreated_at(String created_at) {
-        this.created_at = created_at;
-    }
-
-    public String getUpdated_at() {
-        return updated_at;
-    }
-
-    public void setUpdated_at(String updated_at) {
-        this.updated_at = updated_at;
-    }
-
     public Employee getEmployee() {
         return employee;
     }
 
     public void setEmployee(Employee employee) {
         this.employee = employee;
+    }
+
+    public ZonedDateTime getCreatedDate() {
+        return createdDate;
+    }
+
+    public void setCreatedDate(ZonedDateTime createdDate) {
+        this.createdDate = createdDate;
+    }
+
+    public ZonedDateTime getLastModifiedDate() {
+        return lastModifiedDate;
+    }
+
+    public void setLastModifiedDate(ZonedDateTime lastModifiedDate) {
+        this.lastModifiedDate = lastModifiedDate;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
+    }
+
+    public int getEmployee_id() {
+        return employee_id;
+    }
+
+    public void setEmployee_id(int employee_id) {
+        this.employee_id = employee_id;
+    }
+
+    public int getYears_of_experience() {
+        return years_of_experience;
+    }
+
+    public void setYears_of_experience(int years_of_experience) {
+        this.years_of_experience = years_of_experience;
     }
 }

@@ -64,11 +64,13 @@ public class Project implements Serializable {
     @Column(name = "end_day")
     private Date end_day;
 
+    @LastModifiedDate
     @Column(name = "updated_at")
     private ZonedDateTime updated_at ;
 
-    @Column(name = "created_at")
+    @CreatedDate
     @NotNull
+    @Column(name = "created_at")
     private ZonedDateTime created_at ;
 
     @Column(name = "pm_id")
