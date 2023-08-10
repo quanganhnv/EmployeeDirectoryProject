@@ -15,6 +15,9 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.View;
 
 import java.time.ZonedDateTime;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/admin/account")
@@ -31,9 +34,16 @@ public class AccountController {
 
     @GetMapping("/index")
     public ModelAndView getAllAccount(Pageable pageable){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        AccountDetails accountDetails = (AccountDetails)authentication.getPrincipal();
         ModelAndView mav = new ModelAndView("/account/index");
         Page<AccountDTO> listAccount = accountService.findAll(pageable);
-        mav.addObject("listAccount", listAccount);
+        mav.addObject("listAccount", listAccount)
+                .addObject("id", accountDetails.getEmployeeID())
+                .addObject("avatar_path", accountDetails.getAvatarPath())
+                .addObject("email", accountDetails.getEmail())
+                .addObject("objectSearchPage", "account");
+
         return mav;
     }
 
@@ -42,7 +52,20 @@ public class AccountController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         AccountDetails accountDetails = (AccountDetails)authentication.getPrincipal();
         ModelAndView mav = new ModelAndView("/account/edit");
+        List<String> listRole = new ArrayList<String>();
+        listRole.add("ROLE_ADMIN");
+        listRole.add("ROLE_USER");
+        listRole.add("ROLE_PM");
+
+        List<String> listStatus = new ArrayList<String>();
+        listStatus.add("0");
+        listStatus.add("1");
+
         mav.addObject("account", accountService.findById(id).get())
+                .addObject("id", accountDetails.getEmployeeID())
+                .addObject("listRole", listRole)
+                .addObject("listStatus",listStatus)
+                .addObject("messages", "Edit Account Success !")
                 .addObject("email", accountDetails.getEmail())
                 .addObject("avatar_path", accountDetails.getAvatarPath())
                 .addObject("objectSearchPage", "account");
@@ -53,23 +76,36 @@ public class AccountController {
     public ModelAndView editAccount(@PathVariable int id, @ModelAttribute("account") AccountDTO newAccountDTO, Pageable pageable ) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         AccountDetails accountDetails = (AccountDetails) authentication.getPrincipal();
-        accountService.findById(id).map(AccountDTO -> {
-            AccountDTO.setEmail(newAccountDTO.getEmail());
-            AccountDTO.setUsername(newAccountDTO.getUsername());
-            AccountDTO.setRole_id(newAccountDTO.getRole_id());
-            AccountDTO.setStatus(newAccountDTO.getStatus());
-            AccountDTO.setLastModifiedDate(ZonedDateTime.now());
-            return accountService.save(newAccountDTO);
-        })
-                .orElseGet(() -> {
-                    newAccountDTO.setId(id);
-                    return accountService.save(newAccountDTO);
-                });
+        AccountDTO accountDTO = accountService.findById(id).get();
+        accountDTO.setEmail(newAccountDTO.getEmail());
+        accountDTO.setUsername(newAccountDTO.getUsername());
+        accountDTO.setRole_id(newAccountDTO.getRole_id());
+        accountDTO.setStatus(newAccountDTO.getStatus());
+        accountDTO.setLastModifiedDate(ZonedDateTime.now());
+
+        accountService.save(accountDTO);
 
         ModelAndView mav = new ModelAndView("/account/index");
         Page<AccountDTO> listAccount = accountService.findAll(pageable);
         mav.addObject("listAccount", listAccount)
-          //      .addObject("messages", "Editing Account details successfully !")
+                .addObject("id", accountDetails.getEmployeeID())
+                .addObject("messages", "Editing Account details successfully !")
+                .addObject("email", accountDetails.getEmail())
+                .addObject("avatar_path", accountDetails.getAvatarPath())
+                .addObject("objectSearchPage", "account");
+        return mav;
+    }
+
+    @GetMapping("/delete/{id}")
+    public ModelAndView delete(@PathVariable Integer id, Pageable pageable) {
+        accountService.delete(id);
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        AccountDetails accountDetails = (AccountDetails) authentication.getPrincipal();
+        ModelAndView mav = new ModelAndView("/account/index");
+        Page<AccountDTO> page = accountService.findAll(pageable);
+        mav.addObject("listAccount", page)
+                .addObject("messages", "Delete Success !")
+                .addObject("id", accountDetails.getEmployeeID())
                 .addObject("email", accountDetails.getEmail())
                 .addObject("avatar_path", accountDetails.getAvatarPath())
                 .addObject("objectSearchPage", "account");

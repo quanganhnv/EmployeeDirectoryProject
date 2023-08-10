@@ -8,11 +8,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import java.io.Serializable;
 import java.time.ZonedDateTime;
-import java.util.List;
 import java.util.Set;
 
 public class EmployeeDTO implements Serializable {
-    private int id;
+    private Integer id;
 
     private String firstName;
 
@@ -52,23 +51,11 @@ public class EmployeeDTO implements Serializable {
 
     private ZonedDateTime lastModifiedDate = ZonedDateTime.now();
 
-    private List<Project_MemDTO> project_MemsDTO;
-
-
-
-    public List<Project_MemDTO> getProject_MemsDTO() {
-        return project_MemsDTO;
-    }
-
-    public void setProject_MemsDTO(List<Project_MemDTO> project_MemsDTO) {
-        this.project_MemsDTO = project_MemsDTO;
-    }
-
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

@@ -57,6 +57,9 @@ public class LoginConfig extends WebSecurityConfigurerAdapter {
                 .invalidateHttpSession(true)
                 .deleteCookies("JSESSIONID")
                 .and()
+                .rememberMe()
+                .key("uniqueAndSecret")
+                .and()
                 .exceptionHandling()
                 .accessDeniedPage("/403");
     }

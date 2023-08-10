@@ -1,27 +1,25 @@
 package com.Employee_Directory_Project.service.dto;
 
 import com.Employee_Directory_Project.entities.Employee;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.OneToMany;
 import java.time.ZonedDateTime;
-import java.util.HashSet;
-import java.util.Set;
 
-public class DepartmentDTO {
+public class SkillDTO {
     private Integer id;
 
     private String name;
 
-    private String phone;
+    private Employee employee;
 
-    private String manager_id;
+    private int employee_id;
 
-    private String manager_name;
+    private String employee_name;
+
+    private Integer level;
 
     private String description;
+
+    private int years_of_experience;
 
     private ZonedDateTime createdDate = ZonedDateTime.now();
 
@@ -43,28 +41,36 @@ public class DepartmentDTO {
         this.name = name;
     }
 
-    public String getPhone() {
-        return phone;
+    public Employee getEmployee() {
+        return employee;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
     }
 
-    public String getManager_id() {
-        return manager_id;
+    public String getEmployee_name() {
+        return employee_name;
     }
 
-    public void setManager_id(String manager_id) {
-        this.manager_id = manager_id;
+    public void setEmployee_name(String employee_name) {
+        this.employee_name = employee_name;
     }
 
-    public String getManager_name() {
-        return manager_name;
+    public int getEmployee_id() {
+        return employee_id;
     }
 
-    public void setManager_name(String manager_name) {
-        this.manager_name = manager_name;
+    public void setEmployee_id(int employee_id) {
+        this.employee_id = employee_id;
+    }
+
+    public Integer getLevel() {
+        return level;
+    }
+
+    public void setLevel(Integer level) {
+        this.level = level;
     }
 
     public String getDescription() {
@@ -91,5 +97,11 @@ public class DepartmentDTO {
         this.lastModifiedDate = lastModifiedDate;
     }
 
+    public int getYears_of_experience() {
+        return years_of_experience;
+    }
 
+    public void setYears_of_experience(int years_of_experience) {
+        this.years_of_experience = years_of_experience;
+    }
 }

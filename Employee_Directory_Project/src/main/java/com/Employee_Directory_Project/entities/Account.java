@@ -25,14 +25,15 @@ public class Account {
     @Column(name = "password")
     private String password;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "employee_id", referencedColumnName = "id", insertable = false, updatable = false)
+    private Employee employee;
+
     @Column(name = "employee_id")
     private int employee_id;
 
     @Column(name = "role_id")
     private String role_id;
-
-    @OneToOne(mappedBy = "account")
-    private Employee employee;
 
     @Column(name = "avatar_path")
     private String avatar_path;
@@ -52,6 +53,9 @@ public class Account {
     @LastModifiedDate
     @Column(name = "changed_active_at")
     private ZonedDateTime changedActiveAt = ZonedDateTime.now();
+
+    @Column(name = "remember_token")
+    private String rememberToken;
 
     public Integer getId() {
         return id;
@@ -147,6 +151,14 @@ public class Account {
 
     public void setChangedActiveAt(ZonedDateTime changedActiveAt) {
         this.changedActiveAt = changedActiveAt;
+    }
+
+    public String getRememberToken() {
+        return rememberToken;
+    }
+
+    public void setRememberToken(String rememberToken) {
+        this.rememberToken = rememberToken;
     }
 
     // getters and setters are not shown for brevity

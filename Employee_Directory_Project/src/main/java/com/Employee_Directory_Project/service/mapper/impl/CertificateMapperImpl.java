@@ -72,8 +72,8 @@ public class CertificateMapperImpl implements CertificateMapper {
         }
 
         List<CertificateDTO> list = new ArrayList<CertificateDTO>(entityList.size());
-        for (Certificate department : entityList) {
-            list.add(toDto(department));
+        for (Certificate certificate : entityList) {
+            list.add(toDto(certificate));
         }
 
         return list;

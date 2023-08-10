@@ -42,6 +42,7 @@ public class DepartmentController {
         mav.addObject("listDepartment", page)
                 .addObject("email", accountDetails.getEmail())
                 .addObject("avatar_path", accountDetails.getAvatarPath())
+                .addObject("id", accountDetails.getEmployeeID())
                 .addObject("objectSearchPage", "department");
         return mav;
     }
@@ -56,6 +57,7 @@ public class DepartmentController {
             mav.addObject("department", departmentDTO.get())
                     .addObject("email", accountDetails.getEmail())
                     .addObject("avatar_path", accountDetails.getAvatarPath())
+                    .addObject("id", accountDetails.getEmployeeID())
                     .addObject("objectSearchPage", "department");
             return mav;
         }
@@ -73,7 +75,8 @@ public class DepartmentController {
                 .addObject("department", departmentService.findOne(id).get())
                 .addObject("email", accountDetails.getEmail())
                 .addObject("avatar_path", accountDetails.getAvatarPath())
-                .addObject("objectSearchPage", "department");;
+                .addObject("id", accountDetails.getEmployeeID())
+                .addObject("objectSearchPage", "department");
         return mav;
     }
 
@@ -88,6 +91,7 @@ public class DepartmentController {
                 .addObject("messages", "Delete Success !")
                 .addObject("email", accountDetails.getEmail())
                 .addObject("avatar_path", accountDetails.getAvatarPath())
+                .addObject("id", accountDetails.getEmployeeID())
                 .addObject("objectSearchPage", "department");
         return mav;
     }
@@ -101,19 +105,23 @@ public class DepartmentController {
         mav.addObject("department", departmentDTO)
                 .addObject("email", accountDetails.getEmail())
                 .addObject("avatar_path", accountDetails.getAvatarPath())
+                .addObject("id", accountDetails.getEmployeeID())
                 .addObject("objectSearchPage", "department");
         return mav;
     }
 
     @PostMapping("/add")
-    public ModelAndView createDepartment (@ModelAttribute("department") DepartmentDTO departmentDTO) {
+    public ModelAndView createDepartment (@ModelAttribute("department") DepartmentDTO departmentDTO, Pageable pageable) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         AccountDetails accountDetails = (AccountDetails)authentication.getPrincipal();
         ModelAndView mav = new ModelAndView("/department/index");
         DepartmentDTO result = departmentService.save(departmentDTO);
-        mav.addObject("messages", "Editing Department details successfully !")
+        Page<DepartmentDTO> page = departmentService.findAll(pageable);
+        mav.addObject("listDepartment", page)
+                .addObject("messages", "Add Department successfully !")
                 .addObject("email", accountDetails.getEmail())
                 .addObject("avatar_path", accountDetails.getAvatarPath())
+                .addObject("id", accountDetails.getEmployeeID())
                 .addObject("objectSearchPage", "department");
         return mav;
     }
@@ -141,6 +149,7 @@ public class DepartmentController {
                 .addObject("messages", "Editing Department details successfully !")
                 .addObject("email", accountDetails.getEmail())
                 .addObject("avatar_path", accountDetails.getAvatarPath())
+                .addObject("id", accountDetails.getEmployeeID())
                 .addObject("objectSearchPage", "department");
         return mav;
     }

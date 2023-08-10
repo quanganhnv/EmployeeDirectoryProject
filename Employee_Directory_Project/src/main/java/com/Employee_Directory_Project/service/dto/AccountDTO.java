@@ -23,7 +23,9 @@ public class AccountDTO {
 
     private String employee_name;
 
-    private Integer status;
+    private int status;
+
+    private String rememberToken;
 
     public Integer getId() {
         return id;
@@ -77,6 +79,10 @@ public class AccountDTO {
         this.employee_id = employee_id;
     }
 
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
     public Employee getEmployee() {
         return employee;
     }
@@ -123,5 +129,13 @@ public class AccountDTO {
 
     public void setLastModifiedDate(ZonedDateTime lastModifiedDate) {
         this.lastModifiedDate = lastModifiedDate;
+    }
+
+    public String getRememberToken() {
+        return rememberToken;
+    }
+
+    public void setRememberToken(String rememberToken) {
+        this.rememberToken = rememberToken;
     }
 }

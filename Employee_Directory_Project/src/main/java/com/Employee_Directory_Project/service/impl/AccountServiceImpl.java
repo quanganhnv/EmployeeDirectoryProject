@@ -12,6 +12,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -51,6 +52,35 @@ public class AccountServiceImpl implements AccountService, UserDetailsService {
     @Override
     public Optional<AccountDTO> findById(Integer id) {
         return accountRepository.findById(id).map(accountMapper::toDto);
+    }
+
+    @Override
+    public void delete(Integer id) {
+        accountRepository.deleteById(id);
+    }
+
+    @Override
+    public void updateRememberToken(String token, String email) throws UsernameNotFoundException {
+        Account account = accountRepository.findByEmail(email);
+        if (account != null) {
+            account.setRememberToken(token);
+            accountRepository.save(account);
+        }
+    }
+
+    @Override
+    public Account getByRememberToken(String token) {
+        return accountRepository.findByRememberToken(token);
+    }
+
+    @Override
+    public void updatePassword(Account account, String newPassword) {
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        String encodedPassword = passwordEncoder.encode(newPassword);
+        account.setPassword(encodedPassword);
+
+        account.setRememberToken(null);
+        accountRepository.save(account);
     }
 
 //    public UserDetails loadUserByEmail(String email) throws UsernameNotFoundException{

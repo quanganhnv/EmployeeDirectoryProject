@@ -71,7 +71,7 @@
                 <div class="card">
                     <div class="card-header d-flex justify-content-between">
                         <div class="header-title">
-                            <h4 class="card-title">Add Certificate</h4>
+                            <h4 class="card-title">Add Employee</h4>
                         </div>
                     </div>
                     <div class="card-body">
@@ -127,7 +127,6 @@
                                     </div>
                                 </div>
 
-
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Identity Number</label>
@@ -162,6 +161,16 @@
 
                                 <div class="col-md-12">
                                     <div class="form-group">
+                                        <label>Department *</label>
+                                        <select th:field="*{department_id}" class="form-control" required style="cursor: pointer;">
+                                                <option th:each="department : ${listDepartment}" th:value="${department.id}" th:text="${department.name}"></option>
+                                        </select>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <div class="form-group">
                                         <label>User Name*</label>
                                         <input type="text" name = "username" class="form-control" th:field="*{username}"  placeholder="Enter User Name" required/>
                                         <div class="help-block with-errors"></div>
@@ -180,9 +189,9 @@
                                     <div class="form-group">
                                         <label>Role *</label>
                                         <select th:field="*{role_id}" class="form-control" required style="cursor: pointer;">
-                                            <option th:value="ROLE_AMDIN">Admin</option>
-                                            <option th:value="ROLE_PM">Project Manager</option>
-                                            <option th:value="ROLE_USER">User</option>
+                                            <option value="ROLE_AMDIN">Admin</option>
+                                            <option value="ROLE_PM">Project Manager</option>
+                                            <option value="ROLE_USER">User</option>
                                         </select>
                                         <div class="help-block with-errors"></div>
                                     </div>

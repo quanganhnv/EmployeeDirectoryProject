@@ -17,7 +17,7 @@ public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private int id;
+    private Integer id;
 
     @Column(name = "first_name")
     private String firstName;
@@ -41,8 +41,7 @@ public class Employee {
     @JoinColumn(name = "department_id", referencedColumnName = "id", insertable = false, updatable = false)
     private Department department;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id", referencedColumnName = "employee_id")
+    @OneToOne(mappedBy = "employee")
     private Account account;
 
     @OneToOne(mappedBy = "employee")
@@ -53,8 +52,8 @@ public class Employee {
     private Set<Certificate> certificates = new HashSet<>();
 
     @JsonIgnore
-    @OneToMany(mappedBy = "employee" , cascade = CascadeType.ALL)
-    private Set<Project_Mem> project_Mems = new HashSet<>();
+    @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL)
+    private Set<Skill> skills = new HashSet<>();
 
     @Column(name = "image_path")
     private String image_path;
@@ -80,12 +79,20 @@ public class Employee {
     @Column(name = "updated_at")
     private ZonedDateTime lastModifiedDate = ZonedDateTime.now();
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Set<Skill> getSkills() {
+        return skills;
+    }
+
+    public void setSkills(Set<Skill> skills) {
+        this.skills = skills;
     }
 
     public String getFirstName() {
@@ -166,12 +173,12 @@ public class Employee {
         this.department_name = department_name;
     }
 
-    public int getGender() {
-        return gender;
-    }
-
     public void setGender(int gender) {
         this.gender = gender;
+    }
+
+    public int getGender() {
+        return gender;
     }
 
     public ZonedDateTime getCreatedDate() {
@@ -228,13 +235,5 @@ public class Employee {
 
     public void setAddress(String address) {
         this.address = address;
-    }
-
-    public Set<Project_Mem> getProject_Mems() {
-        return project_Mems;
-    }
-
-    public void setProject_Mems(Set<Project_Mem> project_Mems) {
-        this.project_Mems = project_Mems;
     }
 }
