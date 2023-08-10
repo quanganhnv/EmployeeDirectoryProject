@@ -14,22 +14,23 @@ public class Certificate {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @NotNull
     @Column(name = "name")
     private String name;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "employee_id", referencedColumnName = "id", insertable = false, updatable = false)
     private Employee employee;
-
+    @NotNull
     @Column(name = "employee_id")
     private int employee_id;
-
+    @NotNull
     @Column(name = "effective_day")
     private String effective_day;
-
+    @NotNull
     @Column(name = "expiry_date")
     private String expiry_date;
-
+    @NotNull
     @Column(name = "authorization")
     private String authorization;
 

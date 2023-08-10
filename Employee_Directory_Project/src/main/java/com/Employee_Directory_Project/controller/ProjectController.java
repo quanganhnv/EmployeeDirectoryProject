@@ -1,5 +1,6 @@
 package com.Employee_Directory_Project.controller;
 
+import com.Employee_Directory_Project.repository.ProjectRepository;
 import com.Employee_Directory_Project.service.EmployeeService;
 import com.Employee_Directory_Project.service.ProjectService;
 import com.Employee_Directory_Project.service.dto.EmployeeDTO;
@@ -20,9 +21,12 @@ public class ProjectController {
 
     private final EmployeeService employeeService ;
 
-    public ProjectController(ProjectService projectService, EmployeeService employeeService) {
+    private final ProjectRepository projectRepository;
+
+    public ProjectController(ProjectService projectService, EmployeeService employeeService, ProjectRepository projectRepository) {
         this.projectService = projectService;
         this.employeeService = employeeService;
+        this.projectRepository = projectRepository;
     }
 
     @GetMapping("/project/add")
@@ -37,6 +41,11 @@ public class ProjectController {
 
     @PostMapping("/project/add")
     public ModelAndView SaveProject(@ModelAttribute("ProjectDTO") ProjectDTO projectDTO, ModelMap modelMap){
+        if(projectRepository.findOneByName(projectDTO.getName()).isPresent()){
+            modelMap.addAttribute("message","Name has been existed , please enter new name");
+            modelMap.addAttribute( "projectDTO", projectDTO);
+            return new ModelAndView("project/add",modelMap);
+        };
         modelMap.addAttribute("projectDTO",projectService.save(projectDTO));
         modelMap.addAttribute("objectSearchPage","pm/project");
         return new ModelAndView("project/detail",modelMap);

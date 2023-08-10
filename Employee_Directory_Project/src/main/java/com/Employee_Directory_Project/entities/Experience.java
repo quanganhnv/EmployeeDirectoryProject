@@ -1,6 +1,7 @@
 package com.Employee_Directory_Project.entities;
 
 
+import com.sun.istack.NotNull;
 import org.hibernate.annotations.Fetch;
 
 import javax.persistence.*;
@@ -11,6 +12,7 @@ import java.time.ZonedDateTime;
 @Entity
 @Table(name = "experience")
 public class Experience {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id")
@@ -18,10 +20,10 @@ public class Experience {
 
     @Column(name="name")
     private String name;
-
+    @NotNull
     @Column(name="language")
     private String language;
-
+    @NotNull
     @Column(name="framework")
     private String framework;
 
@@ -36,19 +38,20 @@ public class Experience {
 
     @Column(name="reference")
     private String reference;
-
+    @NotNull
     @Column(name="total_size")
     private int total_size;
-
+    @NotNull
     @Column(name="total_cost")
     private BigInteger total_cost;
-
+    @NotNull
     @Column(name="start_day")
     private Date start_day;
 
+    @NotNull
     @Column(name="end_day")
     private Date end_day;
-
+    @NotNull
     @Column(name="created_at")
     private ZonedDateTime created_at;
 
