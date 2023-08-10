@@ -10,12 +10,9 @@ import java.util.List;
 import java.util.Optional;
 
 public interface Project_MemRepository extends JpaRepository<Project_Mem,Integer> {
-
     Page<Project_Mem> findAllByProject_id(Integer id, Pageable pageable);
-
 
     List<Project_Mem> findAll();
 
     Project_Mem findAllById(Integer Id);
-
 }

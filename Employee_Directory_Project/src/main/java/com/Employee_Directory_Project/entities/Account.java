@@ -16,28 +16,32 @@ public class Account {
     @Column(name = "id")
     private Integer id;
 
-    @Column(name = "email")
+    @NotNull
+    @Column(name = "email",unique = true)
     private String email;
 
-    @Column(name = "username")
+    @NotNull
+    @Column(name = "username",unique = true)
     private String username;
 
+    @NotNull
     @Column(name = "password")
     private String password;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "employee_id", referencedColumnName = "id", insertable = false, updatable = false)
     private Employee employee;
-
+    @NotNull
     @Column(name = "employee_id")
     private int employee_id;
 
+    @NotNull
     @Column(name = "role_id")
     private String role_id;
 
     @Column(name = "avatar_path")
     private String avatar_path;
-
+    @NotNull
     @Column(name = "is_active")
     private int status;
 

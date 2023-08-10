@@ -77,6 +77,7 @@ public class ExperienceMapperImpl implements ExperienceMapper {
         else {
             experienceDTO.setEmployeeName(employee.getFullName());
         }
+
         return experienceDTO;
     }
 

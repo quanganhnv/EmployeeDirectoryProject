@@ -1,10 +1,15 @@
 package com.Employee_Directory_Project.service.mapper.impl;
 
-import com.Employee_Directory_Project.entities.Account;
-import com.Employee_Directory_Project.entities.Department;
-import com.Employee_Directory_Project.entities.Employee;
+import com.Employee_Directory_Project.entities.*;
+import com.Employee_Directory_Project.repository.ExperienceRepository;
+import com.Employee_Directory_Project.repository.Project_MemRepository;
+import com.Employee_Directory_Project.repository.SkillRepository;
 import com.Employee_Directory_Project.service.dto.EmployeeDTO;
-import com.Employee_Directory_Project.service.mapper.EmployeeMapper;
+import com.Employee_Directory_Project.service.dto.ExperienceDTO;
+import com.Employee_Directory_Project.service.dto.ProjectDTO;
+import com.Employee_Directory_Project.service.dto.SkillDTO;
+import com.Employee_Directory_Project.service.mapper.*;
+import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -14,6 +19,23 @@ import java.util.stream.Collectors;
 
 @Component
 public class EmployeeMapperImpl implements EmployeeMapper {
+    private Project_MemMapper project_MemMapper;
+    private ExperienceMapper experienceMapper;
+    private SkillMapper skillMapper;
+    private Project_MemRepository project_MemRepository;
+    private SkillRepository skillRepository;
+    private ExperienceRepository experienceRepository;
+
+    public EmployeeMapperImpl(Project_MemMapper project_MemMapper, ExperienceMapper experienceMapper, SkillMapper skillMapper,
+                              Project_MemRepository project_MemRepository, SkillRepository skillRepository, ExperienceRepository experienceRepository) {
+        this.project_MemMapper = project_MemMapper;
+        this.experienceMapper = experienceMapper;
+        this.skillMapper = skillMapper;
+        this.project_MemRepository = project_MemRepository;
+        this.skillRepository = skillRepository;
+        this.experienceRepository = experienceRepository;
+    }
+
     @Override
     public Employee toEntity(EmployeeDTO dto) {
         if (dto == null) {
@@ -68,6 +90,31 @@ public class EmployeeMapperImpl implements EmployeeMapper {
             employeeDTO.setRole_id(account.getRole_id());
             employeeDTO.setEmail(account.getEmail());
         }
+
+        if(entity.getProject_Mems() == null){
+            List<Project_Mem> project_Mems = project_MemRepository.findAll();
+            employeeDTO.setProject_MemDTOs(project_MemMapper.toDto(project_Mems));
+        }
+        else{
+            employeeDTO.setProject_MemDTOs(project_MemMapper.toDto(new ArrayList<>(entity.getProject_Mems())));
+        }
+
+        if(entity.getExperiences() == null){
+            List<Experience> experience = experienceRepository.findAll();
+            employeeDTO.setExperienceDTOs(experienceMapper.toDto(experience));
+        }
+        else{
+            employeeDTO.setExperienceDTOs(experienceMapper.toDto(new ArrayList<>(entity.getExperiences())));
+        }
+
+        if(entity.getSkills() == null){
+            List<Skill> skill = skillRepository.findAll();
+            employeeDTO.setSkillDTOs(skillMapper.toDto(skill));
+        }
+        else{
+            employeeDTO.setSkillDTOs(skillMapper.toDto(new ArrayList<>(entity.getSkills())));
+        }
+
 
         return employeeDTO;
     }

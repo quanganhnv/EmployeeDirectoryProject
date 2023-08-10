@@ -1,6 +1,8 @@
 package com.Employee_Directory_Project.service.dto;
 
 import com.Employee_Directory_Project.entities.Department;
+import com.Employee_Directory_Project.entities.Employee;
+import com.Employee_Directory_Project.entities.Experience;
 
 import javax.persistence.Column;
 import javax.persistence.FetchType;
@@ -8,6 +10,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import java.io.Serializable;
 import java.time.ZonedDateTime;
+import java.util.List;
 import java.util.Set;
 
 public class EmployeeDTO implements Serializable {
@@ -47,9 +50,26 @@ public class EmployeeDTO implements Serializable {
 
     private String issued_by;
 
+    private List<Project_MemDTO> project_MemDTOs ;
+
+    private List<ExperienceDTO> ExperienceDTOs ;
+
+    private List<SkillDTO> SkillDTOs ;
+
+    private List<ProjectDTO> projectDTOs ;
+
     private ZonedDateTime createdDate = ZonedDateTime.now();
 
     private ZonedDateTime lastModifiedDate = ZonedDateTime.now();
+
+
+    ////////////Getter And Setter ////////////
+
+    public String getFullName() {
+        String firstName = this.firstName;
+        String lastName = this.lastName;
+        return firstName + " " + lastName;
+    }
 
     public Integer getId() {
         return id;
@@ -75,12 +95,6 @@ public class EmployeeDTO implements Serializable {
         this.lastName = lastName;
     }
 
-    public String getFullName() {
-        String firstName = this.firstName;
-        String lastName = this.lastName;
-        return firstName + " " + lastName;
-    }
-
     public void setFullName(String fullName) {
         this.fullName = fullName;
     }
@@ -99,6 +113,14 @@ public class EmployeeDTO implements Serializable {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public String getDepartment_id() {
@@ -189,12 +211,36 @@ public class EmployeeDTO implements Serializable {
         this.issued_by = issued_by;
     }
 
-    public String getAddress() {
-        return address;
+    public List<Project_MemDTO> getProject_MemDTOs() {
+        return project_MemDTOs;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setProject_MemDTOs(List<Project_MemDTO> project_MemDTOs) {
+        this.project_MemDTOs = project_MemDTOs;
+    }
+
+    public List<ExperienceDTO> getExperienceDTOs() {
+        return ExperienceDTOs;
+    }
+
+    public void setExperienceDTOs(List<ExperienceDTO> experienceDTOs) {
+        ExperienceDTOs = experienceDTOs;
+    }
+
+    public List<SkillDTO> getSkillDTOs() {
+        return SkillDTOs;
+    }
+
+    public void setSkillDTOs(List<SkillDTO> skillDTOs) {
+        SkillDTOs = skillDTOs;
+    }
+
+    public List<ProjectDTO> getProjectDTOs() {
+        return projectDTOs;
+    }
+
+    public void setProjectDTOs(List<ProjectDTO> projectDTOs) {
+        this.projectDTOs = projectDTOs;
     }
 
     public ZonedDateTime getCreatedDate() {

@@ -13,7 +13,7 @@ import java.util.stream.DoubleStream;
 
 @Repository
 public interface ProjectRepository extends JpaRepository <Project, Integer> , JpaSpecificationExecutor<Project> {
-    Optional<Project> findOneByNameIgnoreCase(String name);
+    Optional<Project> findOneByName(String name);
 
     Page<Project> findAllByNameContainingIgnoreCase(String textSearchName, Pageable pageable);
 

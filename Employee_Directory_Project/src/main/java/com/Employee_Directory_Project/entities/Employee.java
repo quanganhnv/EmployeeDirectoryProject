@@ -55,13 +55,23 @@ public class Employee {
     @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL)
     private Set<Skill> skills = new HashSet<>();
 
+    @JsonIgnore
+    @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL)
+    private Set<Experience> experiences = new HashSet<>();
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL)
+    private Set<Project_Mem> project_Mems = new HashSet<>();
+
+
+
     @Column(name = "image_path")
     private String image_path;
 
     @Column(name = "sex")
     private int gender;
 
-    @Column(name = "identity_number")
+    @Column(name = "identity_number" , unique = true)
     private String identity_number;
 
     @Column(name = "issued_on")
@@ -78,6 +88,8 @@ public class Employee {
     @LastModifiedDate
     @Column(name = "updated_at")
     private ZonedDateTime lastModifiedDate = ZonedDateTime.now();
+
+    ///////// Getter And Setter ///////
 
     public Integer getId() {
         return id;
@@ -235,5 +247,22 @@ public class Employee {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+
+    public Set<Experience> getExperiences() {
+        return experiences;
+    }
+
+    public void setExperiences(Set<Experience> experiences) {
+        this.experiences = experiences;
+    }
+
+    public Set<Project_Mem> getProject_Mems() {
+        return project_Mems;
+    }
+
+    public void setProject_Mems(Set<Project_Mem> project_Mems) {
+        this.project_Mems = project_Mems;
     }
 }

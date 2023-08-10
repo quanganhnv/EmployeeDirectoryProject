@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-      <title>Employee Diretory Project</title>
+      <title>Employee Directory Project</title>
       
       <!-- Favicon -->
       <link rel="shortcut icon" th:href="@{/images/favicon.ico}" />
@@ -92,10 +92,10 @@
                             <th>Department</th>
                         </tr>
                     </thead>
-                    <tbody class="ligth-body" th:each="employee: ${listEmployee}">
+                    <tbody class="ligth-body" th:each="employee:${listEmployee}">
                         <tr>
                             <td th:text = "${employeeStat.index+1}">1</td>
-                            <td><img th:src="${employee.image_path}" class="img-fluid rounded-normal light-logo" alt="logo"></td>
+                            <td><img th:src="@{/} + ${employee.image_path}" class="img-fluid rounded-normal light-logo" alt="logo"></td>
                             <td th:text = "${employee.fullName}">Nguyen Vu Quang Anh</td>
                             <td th:text="${employee.birthday}">06/05/2001</td>
                             <td>

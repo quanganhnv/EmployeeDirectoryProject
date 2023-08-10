@@ -21,11 +21,14 @@ public class Department {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;
+    @NotNull
     @Column(name = "name")
     private String name;
+
+    @NotNull
     @Column(name = "phone")
     private String phone;
-
+    @NotNull
     @Column(name = "manager_id")
     private String manager_id;
 

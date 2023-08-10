@@ -3,6 +3,7 @@ package com.Employee_Directory_Project.entities;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import com.sun.istack.NotNull;
+import org.aspectj.bridge.IMessage;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Component;
 
 import javax.annotation.sql.DataSourceDefinition;
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 import java.sql.Date;
 import java.sql.Timestamp;
@@ -30,13 +32,13 @@ public class Project implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
-
-    @Column(name = "name")
+    @Column(name = "name",unique = true)
     private String name;
 
     @Column(name = "language")
     private String language;
 
+    @NotNull
     @Column(name = "framework")
     private String framework;
 
@@ -57,7 +59,7 @@ public class Project implements Serializable {
 
     @Column(name = "reference")
     private String reference;
-
+    @NotNull
     @Column(name = "start_day")
     private Date start_day;
 
