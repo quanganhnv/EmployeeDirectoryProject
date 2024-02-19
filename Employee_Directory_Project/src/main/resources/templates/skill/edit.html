@@ -101,6 +101,13 @@
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
+                                        <label>Year of Experience *</label>
+                                        <input type="text" name = "years_of_experience" class="form-control" th:value="*{years_of_experience}" placeholder="Enter Year Of Experience" required />
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
                                         <label>Level *</label>
                                         <select th:field = "*{level}" class="form-control">
                                             <option th:each="level : ${listLevel}" th:value="${level}" th:selected="(${skill.level} == ${level} ? true : false)">

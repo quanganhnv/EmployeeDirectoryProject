@@ -105,7 +105,7 @@
                                     <div class="col-md-6">
                                         <label> Project Manager *</label>
                                         <select  th:field = "*{manager_id}" class="form-control">
-                                            <option th:each="candidate : ${candidates}" th:value="${candidate.id}">
+                                            <option th:each="candidate : ${candidates}" th:value="${candidate.id}" size="6">
                                                 <span th:text = "${candidate.firstName}+' '+${candidate.lastName}"></span>
                                                 <span>  in department  </span>
                                                 <span th:text = "' '+ ${candidate.department_name}"></span>

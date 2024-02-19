@@ -41,7 +41,7 @@ public class Employee {
     @JoinColumn(name = "department_id", referencedColumnName = "id", insertable = false, updatable = false)
     private Department department;
 
-    @OneToOne(mappedBy = "employee")
+    @OneToOne(mappedBy = "employee")    
     private Account account;
 
     @OneToOne(mappedBy = "employee")
